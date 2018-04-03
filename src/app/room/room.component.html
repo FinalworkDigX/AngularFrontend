@@ -7,7 +7,8 @@
   </div>
 </div>
 <div *ngIf="rooms" class="col-12-md">
-    <div *ngFor="let room of rooms" class="row room">
+  {{ rooms.length }}
+    <div *ngFor="let room of rooms; let i = index" class="row room">
       <div class="col-md-10">
         <div class="room-id"><span class="key">Id:</span> {{ room.id }}</div>
         <div class="room-name"><span class="key">Name:</span> {{ room.name }}</div>
@@ -16,7 +17,7 @@
       </div>
       <div class="col-md-2">
         <button (click)="edit(room)">Edit (custom font icon?)</button>
-        <button (click)="delete(room)">Delete (custom font icon?)</button>
+        <button (click)="delete(i, room)">Delete (custom font icon?)</button>
       </div>
     </div>
 </div>

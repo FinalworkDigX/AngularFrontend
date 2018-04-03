@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RoomService } from '../service/room.service';
 import { Room } from '../model/room';
+import { MatDialog } from '@angular/material';
+import { RoomDetailComponent } from './room-detail/room-detail.component';
 
 @Component({
   selector: 'app-room',
@@ -12,26 +14,38 @@ export class RoomComponent implements OnInit {
   rooms: Room[];
 
   constructor(
-    private roomService: RoomService
+    private roomService: RoomService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
     this.geRooms();
   }
 
-  create(room: Room) {
+  create() {
     // Subscribe to return error or success!
-    this.roomService.create(room);
+    this.callDialog(new Room());
+    // this.rooms.push(new Room());
   }
 
   edit(room: Room) {
     // Subscribe to return error or success!
-    this.roomService.update(room);
+    this.callDialog(room);
   }
 
-  delete(room: Room) {
-    // Subscribe to return error or success!
+  private callDialog(room: Room) {
+    const dialogRef = this.dialog.open(RoomDetailComponent, {
+      // width: '30%',
+      data: { room: room }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.updateOrInsert(result);
+    });
+  }
+
+  delete(arrayIndex: number, room: Room) {
     this.roomService.delete(room);
+    this.rooms.splice(arrayIndex, 1);
   }
 
   geRooms() {
@@ -39,4 +53,13 @@ export class RoomComponent implements OnInit {
       .subscribe(rooms => this.rooms = rooms);
   }
 
+  private updateOrInsert(room: Room) {
+    const roomIndex = this.rooms.findIndex(room_ => room_.id === room.id);
+
+    if (roomIndex === -1) {
+      this.rooms.push(room);
+    } else {
+      this.rooms[roomIndex] = room;
+    }
+  }
 }

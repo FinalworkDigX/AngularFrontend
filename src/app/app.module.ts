@@ -11,6 +11,7 @@ import { RoomService } from './service/room.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { RoomDetailComponent } from './room/room-detail/room-detail.component';
 import { MaterialModule } from './material/material.module';
 
 @NgModule({
@@ -26,8 +27,10 @@ import { MaterialModule } from './material/material.module';
     LoginComponent,
     DashboardComponent,
     RoomComponent,
+    RoomDetailComponent
   ],
   entryComponents: [
+    RoomDetailComponent,
   ],
   providers: [
     RoomService,
