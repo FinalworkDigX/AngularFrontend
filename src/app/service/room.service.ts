@@ -10,7 +10,20 @@ export class RoomService {
     private http: HttpClient
   ) {  }
 
-  getRooms(): Observable<Room[]> {
+  getAll(): Observable<Room[]> {
     return this.http.get<Room[]>('/api/v1/room');
   }
+
+  create(room: Room) {
+    //
+  }
+
+  update(room: Room) {
+    //
+  }
+
+  delete(room: Room) {
+    //
+  }
+
 }

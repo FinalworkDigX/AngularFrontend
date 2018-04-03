@@ -19,16 +19,23 @@ export class RoomComponent implements OnInit {
     this.geRooms();
   }
 
+  create(room: Room) {
+    // Subscribe to return error or success!
+    this.roomService.create(room);
+  }
+
   edit(room: Room) {
-    // do something
+    // Subscribe to return error or success!
+    this.roomService.update(room);
   }
 
   delete(room: Room) {
-    // do something
+    // Subscribe to return error or success!
+    this.roomService.delete(room);
   }
 
   geRooms() {
-    this.roomService.getRooms()
+    this.roomService.getAll()
       .subscribe(rooms => this.rooms = rooms);
   }
 
