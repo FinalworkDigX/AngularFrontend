@@ -28,7 +28,7 @@ export class RoomComponent implements OnInit {
     // this.rooms.push(new Room());
   }
 
-  edit(room: Room) {
+  update(room: Room) {
     // Subscribe to return error or success!
     this.callDialog(room);
   }
