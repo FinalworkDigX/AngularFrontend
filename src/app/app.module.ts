@@ -15,6 +15,7 @@ import { RoomDetailComponent } from './room/room-detail/room-detail.component';
 import { MaterialModule } from './material/material.module';
 import { BeaconComponent } from './beacon/beacon.component';
 import { BeaconService } from './service/beacon.service';
+import { BeaconDetailComponent } from './beacon/beacon-detail/beacon-detail.component';
 
 @NgModule({
   imports: [
@@ -30,10 +31,12 @@ import { BeaconService } from './service/beacon.service';
     DashboardComponent,
     RoomComponent,
     RoomDetailComponent,
-    BeaconComponent
+    BeaconComponent,
+    BeaconDetailComponent
   ],
   entryComponents: [
     RoomDetailComponent,
+    BeaconDetailComponent,
   ],
   providers: [
     RoomService,

@@ -23,11 +23,11 @@ export class BeaconService {
     return this.http.get<Beacon[]>(this.baseUrl);
   }
 
-  create(beacon: Room): Observable<Beacon> {
+  create(beacon: Beacon): Observable<Beacon> {
     return this.http.post<Beacon>(this.baseUrl, beacon, httpOptions);
   }
 
-  update(beacon: Room): Observable<Beacon> {
+  update(beacon: Beacon): Observable<Beacon> {
     console.log('Not Yet Implemented (API SIDE)');
     return of(new Beacon());
   }
