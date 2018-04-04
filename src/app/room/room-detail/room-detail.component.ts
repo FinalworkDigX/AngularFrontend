@@ -34,8 +34,9 @@ export class RoomDetailComponent implements OnInit {
     }
   }
 
+  // On cancel return
   onCancelClick() {
-    this.dialogRef.close('pizza');
+    this.dialogRef.close(undefined);
   }
 
   private responseHandler(room: Room) {

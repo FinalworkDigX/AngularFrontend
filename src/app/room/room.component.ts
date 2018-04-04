@@ -3,6 +3,7 @@ import { RoomService } from '../service/room.service';
 import { Room } from '../model/room';
 import { MatDialog } from '@angular/material';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
+import { isUndefined } from "util";
 
 @Component({
   selector: 'app-room',
@@ -39,7 +40,9 @@ export class RoomComponent implements OnInit {
       data: { room: room }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.updateOrInsert(result);
+      if (!isUndefined(result)) {
+        this.updateOrInsert(result);
+      }
     });
   }
 
