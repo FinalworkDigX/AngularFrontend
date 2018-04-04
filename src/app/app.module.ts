@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { RoomDetailComponent } from './room/room-detail/room-detail.component';
 import { MaterialModule } from './material/material.module';
+import { BeaconComponent } from './beacon/beacon.component';
+import { BeaconService } from './service/beacon.service';
 
 @NgModule({
   imports: [
@@ -27,13 +29,15 @@ import { MaterialModule } from './material/material.module';
     LoginComponent,
     DashboardComponent,
     RoomComponent,
-    RoomDetailComponent
+    RoomDetailComponent,
+    BeaconComponent
   ],
   entryComponents: [
     RoomDetailComponent,
   ],
   providers: [
     RoomService,
+    BeaconService,
   ],
   bootstrap: [AppComponent]
 })
