@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
-import { Room } from '../model/room';
 import { Beacon } from '../model/beacon';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-
 
 @Injectable()
 export class BeaconService {
@@ -20,7 +18,7 @@ export class BeaconService {
   ) {  }
 
   getAll(): Observable<Beacon[]> {
-    return this.http.get<Beacon[]>(this.baseUrl);
+    return this.http.get<Beacon[]>(this.baseUrl, httpOptions);
   }
 
   create(beacon: Beacon): Observable<Beacon> {

@@ -1,3 +1,31 @@
-<p>
-  data-item-detail works!
-</p>
+<div *ngIf="dataItem">
+
+  <div *ngIf="isNew;then createTitle else updateTitle"></div>
+  <ng-template #createTitle><h3>New Data Item:</h3></ng-template>
+  <ng-template #updateTitle><h3>Edit: {{ dataItem.name | uppercase }}</h3></ng-template>
+
+  <div class="beacon-roomId2">
+    <mat-form-field>
+      <mat-select placeholder="Room" [(ngModel)]="dataItem.roomId">
+        <mat-option *ngFor="let room of rooms" value="{{ room.id }}">{{ room.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="beacon-name">
+    <mat-form-field>
+      <input matInput [(ngModel)]="dataItem.name" placeholder="name"/>
+    </mat-form-field>
+  </div>
+  <div class="beacon-description">
+    <mat-form-field>
+      <input matInput [(ngModel)]="dataItem.location" placeholder="location"/>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+
+  <div *ngIf="isNew;then createButton else updateButton"></div>
+  <ng-template #createButton><button mat-raised-button (click)="onSubmitClick()">Create</button></ng-template>
+  <ng-template #updateButton><button mat-raised-button (click)="onSubmitClick()">Update</button></ng-template>
+</div>
+

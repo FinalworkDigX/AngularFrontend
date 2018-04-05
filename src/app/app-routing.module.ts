@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {LoginComponent} from './login/login.component';
 import { RoomComponent } from './room/room.component';
 import { BeaconComponent } from './beacon/beacon.component';
+import { DataItemComponent } from './data-item/data-item.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'rooms', component: RoomComponent },
   { path: 'beacons', component: BeaconComponent },
+  { path: 'dataItems', component: DataItemComponent },
 ];
 
 @NgModule({

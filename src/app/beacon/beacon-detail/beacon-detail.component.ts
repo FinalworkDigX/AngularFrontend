@@ -45,5 +45,4 @@ export class BeaconDetailComponent implements OnInit {
   private responseHandler(beacon: Beacon) {
     this.dialogRef.close(beacon);
   }
-
 }

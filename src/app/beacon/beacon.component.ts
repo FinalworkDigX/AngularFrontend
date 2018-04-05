@@ -18,7 +18,7 @@ import { UtilsModule } from '../utils/utils.module';
 export class BeaconComponent implements OnInit {
 
   beacons: Beacon[];
-  roomsDict: any[];
+  rooms: Room[];
 
   constructor(
     private dialog: MatDialog,
@@ -37,7 +37,7 @@ export class BeaconComponent implements OnInit {
 
   getRooms() {
     // this.roomService.getAll().subscribe(rooms_ => this.roomsDict = UtilsModule.arrayToDictOnId(rooms_));
-    this.roomService.getAll().subscribe(rooms_ => this.roomsDict = rooms_);
+    this.roomService.getAll().subscribe(rooms_ => this.rooms = rooms_);
   }
 
   create() {
@@ -57,7 +57,7 @@ export class BeaconComponent implements OnInit {
     const dialogRef = this.dialog.open(BeaconDetailComponent, {
       data: {
         beacon: beacon_,
-        rooms: this.roomsDict
+        rooms: this.rooms
       }
     });
     dialogRef.afterClosed().subscribe(result => {
