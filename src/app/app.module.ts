@@ -19,6 +19,10 @@ import { BeaconDetailComponent } from './beacon/beacon-detail/beacon-detail.comp
 import { DataItemComponent } from './data-item/data-item.component';
 import { DataItemService } from './service/data-item.service';
 import { DataItemDetailComponent } from './data-item/data-item-detail/data-item-detail.component';
+import { UserComponent } from './user/user.component';
+import { AuthenticationService } from './service/authentication.service';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
+import { AdminGuardService } from './guard/admin-guard.service';
 
 @NgModule({
   imports: [
@@ -27,6 +31,10 @@ import { DataItemDetailComponent } from './data-item/data-item-detail/data-item-
     AppRoutingModule,
     HttpClientModule,
     MaterialModule,
+    JwtModule.forRoot({config: {
+        tokenGetter: getToken,
+        whitelistedDomains: ['https://fw.ludovicmarchand.be']
+      }}),
   ],
   declarations: [
     AppComponent,
@@ -37,7 +45,8 @@ import { DataItemDetailComponent } from './data-item/data-item-detail/data-item-
     BeaconComponent,
     BeaconDetailComponent,
     DataItemComponent,
-    DataItemDetailComponent
+    DataItemDetailComponent,
+    UserComponent,
   ],
   entryComponents: [
     RoomDetailComponent,
@@ -48,7 +57,14 @@ import { DataItemDetailComponent } from './data-item/data-item-detail/data-item-
     RoomService,
     BeaconService,
     DataItemService,
+    AuthenticationService,
+    JwtHelperService,
+    AdminGuardService,
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function getToken() {
+  return localStorage.getItem('token.access_token');
+}

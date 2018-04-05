@@ -1,9 +1,10 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <h1>{{ title }}</h1>
-<nav>
+<nav *ngIf="loggedIn">
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/rooms">Rooms</a>
   <a routerLink="/beacons">Beacons</a>
   <a routerLink="/dataItems">Data Items</a>
+  <a routerLink="" (click)="onLogout()">Logout</a>
 </nav>
 <router-outlet></router-outlet>
