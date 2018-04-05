@@ -5,11 +5,20 @@
   <ng-template #updateTitle><h3>Edit: {{ beacon.name | uppercase }}</h3></ng-template>
 
   <!--ToDo list of rooms / search w/ auto-complete? -->
-  <div class="beacon-roomId">
+  <!--<div class="beacon-roomId">-->
+    <!--<mat-form-field>-->
+      <!--<input matInput [(ngModel)]="beacon.roomId" placeholder="Room id"/>-->
+    <!--</mat-form-field>-->
+  <!--</div>-->
+
+  <div class="beacon-roomId2">
     <mat-form-field>
-      <input matInput [(ngModel)]="beacon.roomId" placeholder="Room id"/>
+      <mat-select placeholder="Room" [(ngModel)]="beacon.roomId">
+        <mat-option *ngFor="let room of rooms" value="{{ room.id }}">{{ room.name }}</mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
+
   <div class="beacon-name">
     <mat-form-field>
       <input matInput [(ngModel)]="beacon.name" placeholder="name"/>

@@ -6,6 +6,9 @@ import { MatDialog } from '@angular/material';
 import { BeaconService } from '../service/beacon.service';
 import { BeaconDetailComponent } from './beacon-detail/beacon-detail.component';
 import { isUndefined } from 'util';
+import { RoomService } from '../service/room.service';
+import { utils } from 'protractor';
+import { UtilsModule } from '../utils/utils.module';
 
 @Component({
   selector: 'app-beacon',
@@ -15,18 +18,26 @@ import { isUndefined } from 'util';
 export class BeaconComponent implements OnInit {
 
   beacons: Beacon[];
+  roomsDict: any[];
 
   constructor(
     private dialog: MatDialog,
     private beaconService: BeaconService,
+    private roomService: RoomService,
   ) { }
 
   ngOnInit() {
     this.getBeacons();
+    this.getRooms();
   }
 
   getBeacons() {
     this.beaconService.getAll().subscribe(beacons => this.beacons = beacons);
+  }
+
+  getRooms() {
+    // this.roomService.getAll().subscribe(rooms_ => this.roomsDict = UtilsModule.arrayToDictOnId(rooms_));
+    this.roomService.getAll().subscribe(rooms_ => this.roomsDict = rooms_);
   }
 
   create() {
@@ -44,7 +55,10 @@ export class BeaconComponent implements OnInit {
 
   private callDialog(beacon_: Beacon) {
     const dialogRef = this.dialog.open(BeaconDetailComponent, {
-      data: { beacon: beacon_ }
+      data: {
+        beacon: beacon_,
+        rooms: this.roomsDict
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {

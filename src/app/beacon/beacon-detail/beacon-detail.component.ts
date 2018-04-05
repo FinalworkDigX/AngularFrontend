@@ -13,15 +13,18 @@ export class BeaconDetailComponent implements OnInit {
 
   @Input() beacon: Beacon;
   isNew: Boolean = true;
+  rooms: Room[];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) private data: { beacon: Beacon },
+    @Inject(MAT_DIALOG_DATA) private data: { beacon: Beacon, rooms: Room[] },
     public dialogRef: MatDialogRef<BeaconDetailComponent>,
     private beaconService: BeaconService,
   ) { }
 
   ngOnInit() {
     this.beacon = this.data.beacon;
+    this.rooms = this.data.rooms;
+
     if (this.beacon.id !== undefined && this.beacon.id !== '') {
       this.isNew = false;
     }
