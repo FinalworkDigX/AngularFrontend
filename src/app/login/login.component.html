@@ -1,0 +1,39 @@
+<div class="login">
+  <form #loginForm="ngForm">
+    <mat-input-container>
+      <input
+        matInput
+        type="email"
+        #email="ngModel"
+        [(ngModel)]="login.email"
+        placeholder="Email"
+        name="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        required="required"/>
+      <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
+        <div [hidden]="!email.errors.required">
+          Email is required
+        </div>
+        <div [hidden]="!email.errors.pattern">
+          Invalid email
+        </div>
+      </mat-error>
+    </mat-input-container>
+    <mat-input-container>
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="login.password"
+        placeholder="Password"
+        name="password"
+        required="required"/>
+    </mat-input-container>
+
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      (click)="onLogin()"
+      [disabled]="!loginForm.form.valid">login</button>
+  </form>
+</div>

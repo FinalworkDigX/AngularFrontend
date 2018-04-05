@@ -1,0 +1,54 @@
+<div *ngIf="beacon">
+
+  <div *ngIf="isNew;then createTitle else updateTitle"></div>
+  <ng-template #createTitle><h3>New Beacon:</h3></ng-template>
+  <ng-template #updateTitle><h3>Edit: {{ beacon.name | uppercase }}</h3></ng-template>
+
+  <!--ToDo list of rooms / search w/ auto-complete? -->
+  <!--<div class="beacon-roomId">-->
+    <!--<mat-form-field>-->
+      <!--<input matInput [(ngModel)]="beacon.roomId" placeholder="Room id"/>-->
+    <!--</mat-form-field>-->
+  <!--</div>-->
+
+  <div class="beacon-roomId2">
+    <mat-form-field>
+      <mat-select placeholder="Room" [(ngModel)]="beacon.roomId">
+        <mat-option *ngFor="let room of rooms" value="{{ room.id }}">{{ room.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="beacon-name">
+    <mat-form-field>
+      <input matInput [(ngModel)]="beacon.name" placeholder="name"/>
+    </mat-form-field>
+  </div>
+  <div class="beacon-description">
+    <mat-form-field>
+      <input matInput [(ngModel)]="beacon.description" placeholder="description"/>
+    </mat-form-field>
+  </div>
+  <div class="beacon-major">
+    <mat-form-field>
+      <input matInput [(ngModel)]="beacon.major" placeholder="major"/>
+    </mat-form-field>
+  </div>
+  <div class="beacon-minor">
+    <mat-form-field>
+      <input matInput [(ngModel)]="beacon.minor" placeholder="minor"/>
+    </mat-form-field>
+  </div>
+  <div class="beacon-calibrationFactor">
+    <mat-form-field>
+      <input matInput [(ngModel)]="beacon.calibrationFactor" placeholder="Calibration factor"/>
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+
+  <div *ngIf="isNew;then createButton else updateButton"></div>
+  <ng-template #createButton><button mat-raised-button (click)="onSubmitClick()">Create</button></ng-template>
+  <ng-template #updateButton><button mat-raised-button (click)="onSubmitClick()">Update</button></ng-template>
+</div>
+

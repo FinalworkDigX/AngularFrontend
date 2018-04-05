@@ -1,0 +1,23 @@
+<div class="col-md-12">
+  <div class="col-md-6">
+    <h3>Data Items</h3>
+  </div>
+  <div class="col-md-6">
+    <button (click)="create()">Add new Data Item</button>
+  </div>
+</div>
+<div *ngIf="dataItems" class="col-12-md">
+  {{ dataItems.length }}
+  <div *ngFor="let dataItem of dataItems; let i = index" class="row beacon">
+    <div class="col-md-10">
+      <div class="dataItem-id"><span class="key">Id:</span> {{ dataItem.id }}</div>
+      <div class="dataItem-roomId"><span class="key">Room Id:</span> {{ dataItem.roomId }}</div>
+      <div class="dataItem-name"><span class="key">Name:</span> {{ dataItem.name }}</div>
+      <div class="dataItem-location"><span class="key">location:</span> [{{ dataItem.location.x }}, {{ dataItem.location.y }}, {{ dataItem.location.z }}]</div>
+    </div>
+    <div class="col-md-2">
+      <button (click)="update(dataItem)">Edit (custom font icon?)</button>
+      <button (click)="delete(i, dataItem)">Delete (custom font icon?)</button>
+    </div>
+  </div>
+</div>
