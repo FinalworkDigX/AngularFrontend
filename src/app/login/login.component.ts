@@ -18,13 +18,15 @@ export class LoginComponent implements OnInit {
     private router: Router,
   ) {
     this.login = new Login();
+    if (authenticationService.token) {
+      this.router.navigate(['/dashboard']).then();
+    }
   }
 
   ngOnInit() {
   }
 
   onLogin() {
-    console.log('email: %s, pwd: %s', this.login.email, this.login.password);
     this.authenticationService.login(this.login).subscribe((message) => {
       console.log(message);
       this.answer = message;
