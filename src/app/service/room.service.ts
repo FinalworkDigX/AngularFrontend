@@ -3,10 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Room } from '../model/room';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of } from 'rxjs/observable/of';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { SessionService } from './session.service';
 
 @Injectable()
 export class RoomService {
@@ -14,7 +11,8 @@ export class RoomService {
   private baseUrl =  '/api/v1/room';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private sessionService: SessionService
   ) {  }
 
   getAll(): Observable<Room[]> {
@@ -22,7 +20,7 @@ export class RoomService {
   }
 
   create(room: Room): Observable<Room> {
-    return this.http.post<Room>(this.baseUrl, room, httpOptions);
+    return this.http.post<Room>(this.baseUrl, room, this.sessionService.httpOptions);
   }
 
   update(room: Room): Observable<Room> {

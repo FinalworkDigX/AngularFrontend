@@ -23,6 +23,7 @@ import { UserComponent } from './user/user.component';
 import { AuthenticationService } from './service/authentication.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AdminGuardService } from './guard/admin-guard.service';
+import { SessionService } from './service/session.service';
 
 @NgModule({
   imports: [
@@ -60,6 +61,7 @@ import { AdminGuardService } from './guard/admin-guard.service';
     AuthenticationService,
     JwtHelperService,
     AdminGuardService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })

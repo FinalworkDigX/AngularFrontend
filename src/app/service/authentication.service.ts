@@ -4,17 +4,14 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { Token } from '../model/token';
 import { Login } from '../model/login';
 import { Observable } from 'rxjs/Observable';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { SessionService } from './session.service';
+import { isEmpty } from 'rxjs/operators';
 
 @Injectable()
 export class AuthenticationService {
   @Output() loginState: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   private baseUrl = '/api/v1/auth';
-
   private token_: Token;
 
   // Getter to only return private token (a la .net)
@@ -24,17 +21,24 @@ export class AuthenticationService {
 
   constructor(
     private http: HttpClient,
-    private jwtHelperService: JwtHelperService
+    private jwtHelperService: JwtHelperService,
+    private sessionService: SessionService
   ) {
     this.token_ = JSON.parse(localStorage.getItem('token'));
+    if (this.token_) {
+      console.log(this.getAuthorizationHeader());
+      this.sessionService.setAuthorizationHeader(this.getAuthorizationHeader());
+      console.log(this.sessionService.httpOptions);
+    }
   }
 
   login(login: Login): Observable<String> {
     return new Observable<String>((observer) => {
-      this.http.post<Token>(this.baseUrl + '/login', login, httpOptions)
+      this.http.post<Token>(this.baseUrl + '/admin/login', login, this.sessionService.httpOptions)
         .subscribe((data) => {
             this.token_ = data;
             localStorage.setItem('token', JSON.stringify(data));
+            this.sessionService.setAuthorizationHeader(this.getAuthorizationHeader());
           },
           (err) => {
             console.log('AuthService: \n\tauth error: \n\t\tstatus: %s\n\t\tmessage: %s', err.status, err.message);
@@ -49,7 +53,13 @@ export class AuthenticationService {
   }
 
   logout() {
-    // add logout option to API
+    // Logout option to API
+    this.http.post(this.baseUrl + '/logout', {}, this.sessionService.httpOptions)
+      .subscribe(
+        (res: any) => {},
+        error => console.log(error)
+      );
+    // Logout in browser + locally
     localStorage.removeItem('token');
     this.token_ = null;
     this.fireEvent();
@@ -70,7 +80,7 @@ export class AuthenticationService {
     return !this.jwtHelperService.isTokenExpired(this.token.access_token);
   }
 
-  getAuthorizationHeader(): String {
-    return 'Bearer ' + this.isAuthenticated() ? this.token.access_token : '';
+  getAuthorizationHeader(): string {
+    return 'Bearer ' + (this.isAuthenticated() ? this.token.access_token : '');
   }
 }
