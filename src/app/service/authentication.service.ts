@@ -26,9 +26,7 @@ export class AuthenticationService {
   ) {
     this.token_ = JSON.parse(localStorage.getItem('token'));
     if (this.token_) {
-      console.log(this.getAuthorizationHeader());
       this.sessionService.setAuthorizationHeader(this.getAuthorizationHeader());
-      console.log(this.sessionService.httpOptions);
     }
   }
 

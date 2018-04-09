@@ -16,7 +16,7 @@ export class RoomService {
   ) {  }
 
   getAll(): Observable<Room[]> {
-    return this.http.get<Room[]>('/api/v1/room');
+    return this.http.get<Room[]>('/api/v1/room', this.sessionService.httpOptions);
   }
 
   create(room: Room): Observable<Room> {
@@ -29,7 +29,7 @@ export class RoomService {
   }
 
   delete(room: Room) {
-    this.http.delete(this.baseUrl + '/' + room.id)
+    this.http.delete(this.baseUrl + '/' + room.id, this.sessionService.httpOptions)
       .subscribe(
         (res: any) => {},
         error => console.log(error)
