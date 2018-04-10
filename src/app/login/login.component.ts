@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Login } from '../model/login';
 import { AuthenticationService } from '../service/authentication.service';
 import { Router } from '@angular/router';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,6 +10,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  loginForm: FormGroup;
 
   @Input() login: Login;
   answer: String;
@@ -25,6 +28,27 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
+  }
+
+  private createForm() {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+      ]),
+      password: new FormControl('', [
+        Validators.required
+      ])
+    });
   }
 
   onLogin() {
