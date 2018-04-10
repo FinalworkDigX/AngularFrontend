@@ -3,7 +3,7 @@
     <h3>Data Items</h3>
   </div>
   <div class="col-md-6">
-    <button (click)="create()">Create User</button>
+    <button (click)="onCreate()">Create User</button>
   </div>
 </div>
 <div *ngIf="users" class="col-12-md">
@@ -26,8 +26,9 @@
       <div class="user-logins_count"><span class="key">Logins count:</span> {{ user.logins_count }}</div>
     </div>
     <div class="col-md-2">
-      <button (click)="update(user)">Edit (custom font icon?)</button>
-      <button (click)="delete(i, user)">Delete (custom font icon?)</button>
+      <button (click)="onResetPassword(user)">Reset password (custom font icon?)</button>
+      <button (click)="onUpdate(user)">Edit (custom font icon?)</button>
+      <button (click)="onDelete(i, user)">Delete (custom font icon?)</button>
     </div>
   </div>
 </div>

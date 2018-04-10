@@ -63,6 +63,14 @@ export class AuthenticationService {
     this.fireEvent();
   }
 
+  resetPassword(login: Login) {
+    this.http.post(this.baseUrl + '/reset-password', login, this.sessionService.httpOptions)
+      .subscribe(
+        (res: any) => {},
+        error => console.log(error)
+      );
+  }
+
   fireEvent() {
     this.loginState.emit(this.isAuthenticated());
   }

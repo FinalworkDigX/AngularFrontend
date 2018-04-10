@@ -11,21 +11,23 @@ export class User {
   nickname: string;
   created_at: Date;
   updated_at: Date;
-  identities: Identities;
   user_metadata: UserMetaData;
   last_ip: string;
   last_login: Date;
   logins_count: number;
-}
 
-export class Identities {
-  connection: string;
-  user_id: string;
-  provider: string;
-  isSocial: boolean;
+  constructor() {
+    this.user_metadata = new UserMetaData();
+    this.user_metadata.type = UserType.USER;
+  }
 }
 
 export class UserMetaData {
   channel: string;
-  type: string;
+  type: UserType;
+}
+
+export enum UserType {
+  ADMIN = 'admin',
+  USER = 'user'
 }

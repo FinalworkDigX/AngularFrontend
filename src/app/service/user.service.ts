@@ -4,6 +4,7 @@ import { SessionService } from './session.service';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { User } from '../model/user';
+import { UserDto } from '../dto/userDto';
 
 @Injectable()
 export class UserService {
@@ -23,16 +24,18 @@ export class UserService {
     return this.http.post<User>(this.baseUrl, user, this.sessionService.httpOptions);
   }
 
-  update(user: User): Observable<User> {
-    console.log('Not Yet Implemented (API SIDE)');
-    return of(new User());
+  update(userDto: UserDto): Observable<User> {
+    return this.http.put<User>(this.baseUrl, userDto, this.sessionService.httpOptions);
   }
 
   delete(user: User) {
-    this.http.delete(this.baseUrl + '/' + user.user_id, this.sessionService.httpOptions)
+    const httpOptions = this.sessionService.httpOptions;
+    httpOptions['body'] = user;
+
+    this.http.request('delete', this.baseUrl, httpOptions)
       .subscribe(
-        (res: any) => {},
-        error => console.log(error)
-      );
+      (res: any) => {},
+      error => console.log(error)
+    );
   }
 }

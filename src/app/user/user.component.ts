@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material';
 import { User } from '../model/user';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { isUndefined } from 'util';
+import { AuthenticationService } from '../service/authentication.service';
+import { Login } from '../model/login';
 
 @Component({
   selector: 'app-user',
@@ -16,7 +18,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-  private dialog: MatDialog,
+    private authenticationService: AuthenticationService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -31,14 +34,25 @@ export class UserComponent implements OnInit {
       });
   }
 
-  create() {
+  onCreate() {
     // Subscribe to return error or success!
     this.callDialog(new User());
   }
 
-  update(user: User) {
+  onUpdate(user: User) {
     // Subscribe to return error or success!
     this.callDialog(user);
+  }
+
+  onDelete(arrayIndex: number, user: User) {
+    this.userService.delete(user);
+    this.users.splice(arrayIndex, 1);
+  }
+
+  onResetPassword(user: User) {
+    const login = new Login();
+    login.email = user.email;
+    this.authenticationService.resetPassword(login);
   }
 
   private callDialog(user: User) {
@@ -50,11 +64,6 @@ export class UserComponent implements OnInit {
         this.updateOrInsert(result);
       }
     });
-  }
-
-  delete(arrayIndex: number, user: User) {
-    this.userService.delete(user);
-    this.users.splice(arrayIndex, 1);
   }
 
   private updateOrInsert(user: User) {
