@@ -16,7 +16,7 @@ export class RoomService {
   ) {  }
 
   getAll(): Observable<Room[]> {
-    return this.http.get<Room[]>('/api/v1/room', this.sessionService.httpOptions);
+    return this.http.get<Room[]>(this.baseUrl, this.sessionService.httpOptions);
   }
 
   create(room: Room): Observable<Room> {

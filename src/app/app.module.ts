@@ -24,6 +24,8 @@ import { AuthenticationService } from './service/authentication.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AdminGuardService } from './guard/admin-guard.service';
 import { SessionService } from './service/session.service';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { UserService } from './service/user.service';
 
 @NgModule({
   imports: [
@@ -48,13 +50,16 @@ import { SessionService } from './service/session.service';
     DataItemComponent,
     DataItemDetailComponent,
     UserComponent,
+    UserDetailComponent,
   ],
   entryComponents: [
     RoomDetailComponent,
     BeaconDetailComponent,
     DataItemDetailComponent,
+    UserDetailComponent,
   ],
   providers: [
+    UserService,
     RoomService,
     BeaconService,
     DataItemService,
