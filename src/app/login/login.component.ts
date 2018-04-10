@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   @Input() login: Login;
   answer: String;
+  hide = true;
 
   constructor(
     private authenticationService: AuthenticationService,
