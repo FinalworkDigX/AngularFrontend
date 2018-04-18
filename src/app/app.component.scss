@@ -1,0 +1,49 @@
+$primary-color: #333;
+$accent-color-1: #F6A82B;
+
+// navigation
+.wrapper {
+  margin: 0;
+
+  .navigation {
+    padding: 0;
+    background: $primary-color;
+
+    nav {
+      min-height: 100vh;
+
+      a {
+        padding: 1em;
+        display: block;
+        color: white;
+
+        &:hover:not(.logo) {
+          background-color: lighten($primary-color, 10%);
+          text-decoration: none;
+          color: darken(white, 10%);
+        }
+
+        &.logo {
+          text-align: center;
+          img {
+            height: auto;
+            max-width: 5em;
+          }
+        }
+
+        &.logout {
+          background-color: crimson;
+          color: white;
+
+          &:hover {
+            background-color: lighten(crimson, 5%);
+          }
+        }
+      }
+
+      .separator {
+        border-bottom: 1px solid $accent-color-1;
+      }
+    }
+  }
+}
