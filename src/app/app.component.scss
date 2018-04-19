@@ -17,6 +17,11 @@ $accent-color-1: #F6A82B;
         display: block;
         color: white;
 
+        &.navigation-active {
+          //background-color: pink !important;
+          border-right: 5px solid $accent-color-1;
+        }
+
         &:hover:not(.logo) {
           background-color: lighten($primary-color, 10%);
           text-decoration: none;
