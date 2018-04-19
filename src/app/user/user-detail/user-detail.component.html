@@ -1,7 +1,7 @@
 <div *ngIf="user">
 
   <div *ngIf="isNew;then createTitle else updateTitle"></div>
-  <ng-template #createTitle><h3>New Data Item:</h3></ng-template>
+  <ng-template #createTitle><h3>New User:</h3></ng-template>
   <ng-template #updateTitle><h3>Edit: {{ user.name | uppercase }}</h3></ng-template>
 
   <form [formGroup]="userForm">
@@ -12,7 +12,7 @@
         </mat-select>
       </mat-form-field>
     </div>
-    
+
     <div class="user-email">
       <mat-input-container>
         <input matInput [(ngModel)]="user.email" placeholder="email" formControlName="email" name="email" required/>
