@@ -39,3 +39,6 @@
       [disabled]="loginForm.invalid">login</button>
   </form>
 </div>
+<div *ngIf="errorMessage" class="alert alert-danger alert-login">
+  {{ errorMessage }}
+</div>

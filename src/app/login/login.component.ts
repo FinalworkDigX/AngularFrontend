@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   @Input() login: Login;
   answer: String;
   hide = true;
+  errorMessage: String;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -60,6 +61,8 @@ export class LoginComponent implements OnInit {
     },
     (err) => {
       //
+      console.log(err.error.message);
+      this.errorMessage = err.error.message;
     });
   }
 
