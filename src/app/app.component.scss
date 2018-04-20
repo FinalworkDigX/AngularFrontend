@@ -1,14 +1,24 @@
 @import "../variables";
+
+@media (min-width: 768px) {
+  nav {
+    position: fixed;
+    width: 16.66%;
+  }
+}
+
 // navigation
 .wrapper {
   margin: 0;
 
   .navigation {
     padding: 0;
-    background: $primary-color;
 
     nav {
+      display: flex;
+      flex-direction: column;
       min-height: 100vh;
+      background: $primary-color;
 
       a {
         padding: 1em;
@@ -33,13 +43,23 @@
             max-width: 5em;
           }
         }
+      }
 
-        &.logout {
-          background-color: crimson;
-          color: white;
+      .bottom-wrapper {
+        display: flex;
+        flex-grow: 1;
 
-          &:hover {
-            background-color: lighten(crimson, 5%);
+        .bottom {
+          align-self: flex-end;
+          width: 100%;
+
+          .logout {
+            background-color: crimson;
+            color: white;
+
+            &:hover {
+              background-color: lighten(crimson, 5%);
+            }
           }
         }
       }
