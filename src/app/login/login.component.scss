@@ -1,7 +1,14 @@
+@import "~variables.scss";
+
+// See main styles.scss
+.login-wrapper {}
+
 .login {
-  margin: 0 auto;
-  margin-top: 20vh;
-  max-width: 250px;
+  margin: 20vh auto 0 auto;
+  max-width: 300px;
+  background: white;
+  padding: 2em;
+  border-radius: 15px;
 
   #logo {
     text-align: center;

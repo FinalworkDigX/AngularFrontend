@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Login } from '../model/login';
 import { AuthenticationService } from '../service/authentication.service';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
 
@@ -21,11 +21,18 @@ export class LoginComponent implements OnInit {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
+    private renderer: Renderer2
   ) {
     this.login = new Login();
     if (authenticationService.token) {
       this.router.navigate(['/dashboard']).then();
     }
+
+    this.renderer.addClass(document.body, 'login-wrapper');
+  }
+
+  ngOnDestroy() {
+    this.renderer.removeClass(document.body, 'login-wrapper');
   }
 
   ngOnInit() {
