@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataSource } from '../model/data-source';
 import { MatDialog } from '@angular/material';
 import { DataSourceService } from '../service/data-source.service';
+import { isUndefined } from 'util';
+import { DataSourceDetailComponent } from './data-source-detail/data-source-detail.component';
 
 @Component({
   selector: 'app-data-source',
@@ -30,8 +32,40 @@ export class DataSourceComponent implements OnInit {
     });
   }
 
-  create() {}
-  update(dataSource) {}
-  delete(index, dataSource) {}
+  create() {
+    this.callDialog(new DataSource());
+  }
+
+  update(dataSource: DataSource) {
+    this.callDialog(dataSource);
+  }
+
+  delete(arrayIndex: number, dataSource: DataSource) {
+    this.dataSourceService.delete(dataSource);
+    this.dataSources.splice(arrayIndex, 1);
+  }
+
+  private callDialog(dataSource: DataSource) {
+    const dialogRef = this.dialog.open(DataSourceDetailComponent, {
+      data: {
+        dataSource: dataSource
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (!isUndefined(result)) {
+        this.updateOrInsert(result);
+      }
+    });
+  }
+
+  private updateOrInsert(dataSource: DataSource) {
+    const dataSourceIndex = this.dataSources.findIndex(dataSource_ => dataSource_.id === dataSource.id);
+
+    if (dataSourceIndex === -1) {
+      this.dataSources.push(dataSource);
+    } else {
+      this.dataSources[dataSourceIndex] = dataSource;
+    }
+  }
 
 }

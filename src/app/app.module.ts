@@ -29,6 +29,7 @@ import { UserService } from './service/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataSourceComponent } from './data-source/data-source.component';
 import { DataSourceService } from './service/data-source.service';
+import { DataSourceDetailComponent } from './data-source/data-source-detail/data-source-detail.component';
 
 @NgModule({
   imports: [
@@ -57,11 +58,13 @@ import { DataSourceService } from './service/data-source.service';
     UserComponent,
     UserDetailComponent,
     DataSourceComponent,
+    DataSourceDetailComponent,
   ],
   entryComponents: [
     RoomDetailComponent,
     BeaconDetailComponent,
     DataItemDetailComponent,
+    DataSourceDetailComponent,
     UserDetailComponent,
   ],
   providers: [
