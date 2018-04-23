@@ -1,0 +1,34 @@
+<div *ngIf="dataSource">
+
+  <div *ngIf="isNew;then createTitle else updateTitle"></div>
+  <ng-template #createTitle><h3>New Data Source:</h3></ng-template>
+  <ng-template #updateTitle><h3>Edit:</h3></ng-template>
+
+  <div class="dataSource-url">
+    <mat-form-field>
+      <input matInput [(ngModel)]="dataSource.url" placeholder="URL"/>
+    </mat-form-field>
+  </div>
+  <div class="dataSource-destinations">
+    <div *ngFor="let dataDestination of dataDestinations">
+      <mat-form-field>
+        <input matInput [(ngModel)]="dataDestination.destination" placeholder="destination"/>
+      </mat-form-field>
+      <div *ngFor="let conversion of dataDestination.conversionScheme">
+        <mat-form-field>
+          <input matInput [(ngModel)]="conversion.incomingDataKey" placeholder="Incoming data key"/>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput [(ngModel)]="conversion.dataLogData" placeholder="DataLog data"/>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <!-- Buttons -->
+  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+
+  <div *ngIf="isNew;then createButton else updateButton"></div>
+  <ng-template #createButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Create</button></ng-template>
+  <ng-template #updateButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Update</button></ng-template>
+</div>
+

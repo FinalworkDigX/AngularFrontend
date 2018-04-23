@@ -1,0 +1,50 @@
+<div *ngIf="user">
+
+  <div *ngIf="isNew;then createTitle else updateTitle"></div>
+  <ng-template #createTitle><h3>New User:</h3></ng-template>
+  <ng-template #updateTitle><h3>Edit: {{ user.name | uppercase }}</h3></ng-template>
+
+  <form [formGroup]="userForm">
+    <div class="user-type">
+      <mat-form-field>
+        <mat-select placeholder="Type" [(ngModel)]="user.user_metadata.type" [ngModelOptions]="{standalone: true}" required>
+          <mat-option *ngFor="let t of types" [value]="t.value">{{ t.value }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="user-email">
+      <mat-input-container>
+        <input matInput [(ngModel)]="user.email" placeholder="email" formControlName="email" name="email" required/>
+        <mat-error *ngIf="email.invalid">
+          <div [hidden]="!email.errors.required">
+            Email is required
+          </div>
+          <div [hidden]="!email.errors.pattern">
+            Invalid email
+          </div>
+        </mat-error>
+      </mat-input-container>
+    </div>
+    <div class="user-password" *ngIf="isNew">
+      <mat-input-container>
+        <input matInput [(ngModel)]="user.password" placeholder="password" formControlName="password" name="password" [type]="hide ? 'password' : 'text'" required/>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <mat-error *ngIf="password.invalid">
+          <div [hidden]="!password.errors.required">
+            Password is required
+          </div>
+          <div [hidden]="!password.errors.pattern">
+            8 characters long, min. 1 digit, min. 1 uppercase
+          </div>
+        </mat-error>
+      </mat-input-container>
+    </div>
+  </form>
+  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+
+  <div *ngIf="isNew;then createButton else updateButton"></div>
+  <ng-template #createButton><button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="onSubmitClick()">Create</button></ng-template>
+  <ng-template #updateButton><button mat-raised-button color="primary" [disabled]="userForm.invalid" (click)="onSubmitClick()">Update</button></ng-template>
+</div>
+

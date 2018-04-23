@@ -26,7 +26,6 @@ export class RoomComponent implements OnInit {
   create() {
     // Subscribe to return error or success!
     this.callDialog(new Room());
-    // this.rooms.push(new Room());
   }
 
   update(room: Room) {

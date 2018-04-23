@@ -1,14 +1,16 @@
 <div class="login">
-  <form #loginForm="ngForm">
+  <div id="logo">
+    <img src="assets/img/ram_logo.png" alt="ram_logo"/>
+  </div>
+  <form [formGroup]="loginForm">
     <mat-input-container>
       <input
         matInput
         type="email"
-        #email="ngModel"
         [(ngModel)]="login.email"
         placeholder="Email"
         name="email"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        formControlName="email"
         required="required"/>
       <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
         <div [hidden]="!email.errors.required">
@@ -20,13 +22,13 @@
       </mat-error>
     </mat-input-container>
     <mat-input-container>
-      <input
-        matInput
-        type="password"
-        [(ngModel)]="login.password"
-        placeholder="Password"
-        name="password"
-        required="required"/>
+      <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password" name="password" formControlName="password" required>
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      <mat-error *ngIf="password.errors && (password.dirty || password.touched)">
+        <div [hidden]="!password.errors.required">
+          Password is required!
+        </div>
+      </mat-error>
     </mat-input-container>
 
     <button
@@ -34,6 +36,9 @@
       type="submit"
       color="primary"
       (click)="onLogin()"
-      [disabled]="!loginForm.form.valid">login</button>
+      [disabled]="loginForm.invalid">login</button>
   </form>
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger alert-login">
+  {{ errorMessage }}
 </div>

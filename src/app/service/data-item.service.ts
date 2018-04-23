@@ -2,10 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataItem } from '../model/data-item';
 import { Observable } from 'rxjs/Observable';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { SessionService } from './session.service';
 
 @Injectable()
 export class DataItemService {
@@ -14,18 +11,19 @@ export class DataItemService {
 
   constructor(
     private http: HttpClient,
+    private sessionService: SessionService
   ) { }
 
   getAll(): Observable<DataItem[]> {
-    return this.http.get<DataItem[]>(this.baseUrl, httpOptions);
+    return this.http.get<DataItem[]>(this.baseUrl, this.sessionService.httpOptions);
   }
 
   create(dataItem: DataItem): Observable<DataItem> {
-    return this.http.post<DataItem>(this.baseUrl, dataItem, httpOptions);
+    return this.http.post<DataItem>(this.baseUrl, dataItem, this.sessionService.httpOptions);
   }
 
   update(dataItem: DataItem): Observable<DataItem> {
-    return this.http.put<DataItem>(this.baseUrl, dataItem, httpOptions);
+    return this.http.put<DataItem>(this.baseUrl, dataItem, this.sessionService.httpOptions);
   }
 
   delete(dataItem: DataItem) {

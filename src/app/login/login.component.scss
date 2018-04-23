@@ -1,0 +1,39 @@
+@import "~variables.scss";
+
+// See main styles.scss
+.login-wrapper {}
+
+.login {
+  margin: 20vh auto 0 auto;
+  max-width: 300px;
+  background: white;
+  padding: 2em;
+  border-radius: 15px;
+
+  #logo {
+    text-align: center;
+
+    img {
+      height: auto;
+      width: 10em;
+    }
+  }
+
+  form {
+    margin: auto;
+
+    .mat-form-field {
+      display: block;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.alert-login {
+  max-width: 300px;
+  margin: 1em auto;
+}
+

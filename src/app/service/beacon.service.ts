@@ -3,10 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Beacon } from '../model/beacon';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { SessionService } from './session.service';
+import { DataSource } from '../model/data-source';
 
 @Injectable()
 export class BeaconService {
@@ -14,20 +12,20 @@ export class BeaconService {
   private baseUrl =  '/api/v1/beacon';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private sessionService: SessionService
   ) {  }
 
   getAll(): Observable<Beacon[]> {
-    return this.http.get<Beacon[]>(this.baseUrl, httpOptions);
+    return this.http.get<Beacon[]>(this.baseUrl, this.sessionService.httpOptions);
   }
 
   create(beacon: Beacon): Observable<Beacon> {
-    return this.http.post<Beacon>(this.baseUrl, beacon, httpOptions);
+    return this.http.post<Beacon>(this.baseUrl, beacon, this.sessionService.httpOptions);
   }
 
   update(beacon: Beacon): Observable<Beacon> {
-    console.log('Not Yet Implemented (API SIDE)');
-    return of(new Beacon());
+    return this.http.put<Beacon>(this.baseUrl, beacon, this.sessionService.httpOptions);
   }
 
   delete(beacon: Beacon) {

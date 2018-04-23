@@ -1,10 +1,24 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h1>{{ title }}</h1>
-<nav *ngIf="loggedIn">
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/rooms">Rooms</a>
-  <a routerLink="/beacons">Beacons</a>
-  <a routerLink="/dataItems">Data Items</a>
-  <a routerLink="" (click)="onLogout()">Logout</a>
-</nav>
-<router-outlet></router-outlet>
+<!--<h1>{{ title }}</h1>-->
+<div class="row wrapper">
+  <div *ngIf="loggedIn" ngClass="col-md-2 navigation">
+    <nav>
+      <a class="logo" routerLink="/dashboard">
+        <img  src="assets/img/ram_logo.png" alt="ram_logo"/>
+      </a>
+      <a routerLink="/rooms" routerLinkActive="navigation-active">Rooms</a>
+      <a routerLink="/beacons" routerLinkActive="navigation-active">Beacons</a>
+      <a routerLink="/dataItems" routerLinkActive="navigation-active">Data Items</a>
+      <a routerLink="/users" routerLinkActive="navigation-active">Users</a>
+      <a routerLink="/dataSources" routerLinkActive="navigation-active">Data Sources</a>
+      <div class="bottom-wrapper">
+        <div class="bottom">
+          <a class="logout" routerLink="" (click)="onLogout()">Logout</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  <div class="col-md-{{loggedIn? '10': '12'}} content">
+    <router-outlet></router-outlet>
+  </div>
+</div>

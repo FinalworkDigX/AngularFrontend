@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -23,14 +23,23 @@ import { UserComponent } from './user/user.component';
 import { AuthenticationService } from './service/authentication.service';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { AdminGuardService } from './guard/admin-guard.service';
+import { SessionService } from './service/session.service';
+import { UserDetailComponent } from './user/user-detail/user-detail.component';
+import { UserService } from './service/user.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataSourceComponent } from './data-source/data-source.component';
+import { DataSourceService } from './service/data-source.service';
+import { DataSourceDetailComponent } from './data-source/data-source-detail/data-source-detail.component';
 
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
+    MaterialModule,
     AppRoutingModule,
     HttpClientModule,
-    MaterialModule,
     JwtModule.forRoot({config: {
         tokenGetter: getToken,
         whitelistedDomains: ['https://fw.ludovicmarchand.be']
@@ -47,19 +56,27 @@ import { AdminGuardService } from './guard/admin-guard.service';
     DataItemComponent,
     DataItemDetailComponent,
     UserComponent,
+    UserDetailComponent,
+    DataSourceComponent,
+    DataSourceDetailComponent,
   ],
   entryComponents: [
     RoomDetailComponent,
     BeaconDetailComponent,
     DataItemDetailComponent,
+    DataSourceDetailComponent,
+    UserDetailComponent,
   ],
   providers: [
+    UserService,
     RoomService,
     BeaconService,
     DataItemService,
+    DataSourceService,
     AuthenticationService,
     JwtHelperService,
     AdminGuardService,
+    SessionService
   ],
   bootstrap: [AppComponent]
 })
