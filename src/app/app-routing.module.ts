@@ -8,6 +8,7 @@ import { BeaconComponent } from './beacon/beacon.component';
 import { DataItemComponent } from './data-item/data-item.component';
 import { AdminGuardService } from './guard/admin-guard.service';
 import { UserComponent } from './user/user.component';
+import { DataSourceComponent } from './data-source/data-source.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'beacons', component: BeaconComponent, canActivate: [AdminGuardService] },
   { path: 'dataItems', component: DataItemComponent, canActivate: [AdminGuardService] },
   { path: 'users', component: UserComponent, canActivate: [AdminGuardService] },
+  { path: 'dataSources', component: DataSourceComponent, canActivate: [AdminGuardService] },
 ];
 
 @NgModule({

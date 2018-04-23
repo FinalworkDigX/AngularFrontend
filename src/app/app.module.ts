@@ -27,6 +27,8 @@ import { SessionService } from './service/session.service';
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserService } from './service/user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataSourceComponent } from './data-source/data-source.component';
+import { DataSourceService } from './service/data-source.service';
 
 @NgModule({
   imports: [
@@ -54,6 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DataItemDetailComponent,
     UserComponent,
     UserDetailComponent,
+    DataSourceComponent,
   ],
   entryComponents: [
     RoomDetailComponent,
@@ -66,6 +69,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RoomService,
     BeaconService,
     DataItemService,
+    DataSourceService,
     AuthenticationService,
     JwtHelperService,
     AdminGuardService,
