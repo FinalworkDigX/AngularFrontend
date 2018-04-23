@@ -4,6 +4,7 @@ import { Room } from '../model/room';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { of } from 'rxjs/observable/of';
 import { SessionService } from './session.service';
+import { DataSource } from '../model/data-source';
 
 @Injectable()
 export class RoomService {
@@ -24,8 +25,7 @@ export class RoomService {
   }
 
   update(room: Room): Observable<Room> {
-    console.log('Not Yet Implemented (API SIDE)');
-    return of(new Room());
+    return this.http.put<Room>(this.baseUrl, room, this.sessionService.httpOptions);
   }
 
   delete(room: Room) {

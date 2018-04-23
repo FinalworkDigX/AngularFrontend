@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { Beacon } from '../model/beacon';
 import { SessionService } from './session.service';
+import { DataSource } from '../model/data-source';
 
 @Injectable()
 export class BeaconService {
@@ -24,8 +25,7 @@ export class BeaconService {
   }
 
   update(beacon: Beacon): Observable<Beacon> {
-    console.log('Not Yet Implemented (API SIDE)');
-    return of(new Beacon());
+    return this.http.put<Beacon>(this.baseUrl, beacon, this.sessionService.httpOptions);
   }
 
   delete(beacon: Beacon) {
