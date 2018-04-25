@@ -4,5 +4,6 @@ export class DataItem {
   id: string;
   roomId: string;
   name: string;
+  itemId: string;
   location: Vector3;
 }

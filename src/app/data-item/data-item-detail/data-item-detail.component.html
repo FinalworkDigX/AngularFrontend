@@ -4,7 +4,7 @@
   <ng-template #createTitle><h3>New Data Item:</h3></ng-template>
   <ng-template #updateTitle><h3>Edit: {{ dataItem.name | uppercase }}</h3></ng-template>
 
-  <div class="beacon-roomId2">
+  <div class="dataItem-roomId2">
     <mat-form-field>
       <mat-select placeholder="Room" [(ngModel)]="dataItem.roomId">
         <mat-option *ngFor="let room of rooms" value="{{ room.id }}">{{ room.name }}</mat-option>
@@ -12,12 +12,17 @@
     </mat-form-field>
   </div>
 
-  <div class="beacon-name">
+  <div class="dataItem-name">
     <mat-form-field>
       <input matInput [(ngModel)]="dataItem.name" placeholder="name"/>
     </mat-form-field>
   </div>
-  <div class="beacon-description">
+  <div class="dataItem-itemId">
+    <mat-form-field>
+      <input matInput [(ngModel)]="dataItem.itemId" placeholder="item id"/>
+    </mat-form-field>
+  </div>
+  <div class="dataItem-description">
     <mat-form-field>
       <input matInput [(ngModel)]="dataItem.location" placeholder="location"/>
     </mat-form-field>
