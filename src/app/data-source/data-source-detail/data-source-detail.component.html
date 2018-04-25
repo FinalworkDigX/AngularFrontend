@@ -18,9 +18,23 @@
         <mat-form-field>
           <input matInput [(ngModel)]="conversion.incomingDataKey" placeholder="Incoming data key"/>
         </mat-form-field>
-        <mat-form-field>
-          <input matInput [(ngModel)]="conversion.dataLogData" placeholder="DataLog data"/>
-        </mat-form-field>
+
+        <div *ngIf="isInformationSchemeEntry(conversion); then informationDLD else stringDLD"></div>
+        <ng-template #informationDLD>
+          <mat-form-field>
+            <input matInput [(ngModel)]="conversion.dataLogData.index" placeholder="Information display index"/>
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [(ngModel)]="conversion.dataLogData.name" placeholder="Information display name"/>
+          </mat-form-field>
+        </ng-template>
+        <ng-template #stringDLD>
+          <mat-form-field>
+            <input matInput [(ngModel)]="conversion.dataLogData" placeholder="DataLog data"/>
+          </mat-form-field>
+        </ng-template>
+
+
       </div>
     </div>
   </div>

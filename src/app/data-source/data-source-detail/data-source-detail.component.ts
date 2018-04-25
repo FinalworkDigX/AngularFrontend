@@ -3,9 +3,11 @@ import { DataSource } from '../../model/data-source';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { DataSourceService } from '../../service/data-source.service';
 import { isNullOrUndefined } from 'util';
+import { InformationConversionDto } from '../../dto/information-conversion-dto';
+import { StringSchemeEntry } from '../../model/string-scheme-entry';
+import { InformationSchemeEntry } from '../../model/information-scheme-entry';
+import { ConversionSchemeEntry } from '../../model/conversion-scheme-entry';
 import { DataDestination } from '../../model/data-destination';
-import { StringConversion } from '../../model/string-conversion';
-import { InformationConversion } from '../../model/information-conversion';
 
 @Component({
   selector: 'app-data-source-detail',
@@ -39,29 +41,49 @@ export class DataSourceDetailComponent implements OnInit {
   }
 
   private prepareDataForDisplay() {
+    this.dataDestinations = [];
     if (this.isNew) {
       this.dataSource.destinations = [];
     } else {
-      const newDataDestinations = [];
       for (const dd of this.dataSource.destinations) {
-        const newDD = new DataDestination();
-        newDD.destination = dd.destination;
-        newDD.conversionScheme = [];
-        for (const key of Object.keys(dd.conversionScheme)) {
-          console.log(key + ' - ' + dd.conversionScheme[key] + '\n');
-          let csItem;
-          if (typeof dd.conversionScheme === 'string') {
-            csItem = new StringConversion();
+        const newDD = new DataDestination(dd.destination);
+        for (let ce of dd.conversionScheme) {
+          if (typeof ce.dataLogData === 'string') {
+            ce = new StringSchemeEntry(ce.incomingDataKey, ce.dataLogData);
           } else {
-            csItem = new InformationConversion();
+            ce = new InformationSchemeEntry(ce.incomingDataKey, ce.dataLogData);
           }
-          csItem.incomingDataKey = key;
-          csItem.dataLogData = dd.conversionScheme[key];
-          newDD.conversionScheme.push(csItem);
+          newDD.conversionScheme.push(ce);
         }
-        newDataDestinations.push(newDD);
+        this.dataDestinations.push(newDD);
       }
-      this.dataDestinations = newDataDestinations;
+    }
+  }
+
+
+  logTypeOf(val) {
+    console.log(typeof val);
+    if (val instanceof InformationSchemeEntry) {
+      console.log('Info entry');
+    }
+    if (val instanceof StringSchemeEntry) {
+      console.log('String entry');
+    }
+    if (val instanceof DataDestination) {
+      console.log('Data destination');
+    }
+  }
+
+  isInformationSchemeEntry(val) {
+    this.logTypeOf(val);
+    return val instanceof InformationSchemeEntry;
+  }
+
+  convertToInformation(val): InformationConversionDto {
+    if (val.hasOwnProperty('index') &&
+      val.hasOwnProperty('name')) {
+      const info = new InformationConversionDto(val);
+      return info;
     }
   }
 

@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from './session.service';
-import { Room } from '../model/room';
-import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { DataSource } from '../model/data-source';
-import { DataItem } from '../model/data-item';
 
 @Injectable()
 export class DataSourceService {
