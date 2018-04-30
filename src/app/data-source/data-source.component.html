@@ -6,9 +6,9 @@
     <button (click)="create()">Add new Data source</button>
   </div>
 </div>
-<div *ngIf="dataSources" class="col-12-md">
+<div *ngIf="dataSources" class="col-12-md item-list">
   {{ dataSources.length }}
-  <div *ngFor="let dataSource of dataSources; let i = index" class="row dataSource">
+  <div *ngFor="let dataSource of dataSources; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="dataSource-id"><span class="key">Id:</span> {{ dataSource.id }}</div>
     </div>
