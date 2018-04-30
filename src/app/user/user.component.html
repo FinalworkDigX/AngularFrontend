@@ -6,9 +6,9 @@
     <button (click)="onCreate()">Create User</button>
   </div>
 </div>
-<div *ngIf="users" class="col-12-md">
+<div *ngIf="users" class="col-12-md item-list">
   {{ users.length }}
-  <div *ngFor="let user of users; let i = index" class="row group">
+  <div *ngFor="let user of users; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="user-id"><span class="key">Id:</span> {{ user.user_id }}</div>
       <div class="user-email"><span class="key">Email:</span> {{ user.email }}</div>
@@ -17,7 +17,7 @@
       <div class="user-nickname"><span class="key">Nickname:</span> {{ user.nickname}}</div>
       <div class="user-created"><span class="key">Created:</span> {{ user.created_at }}</div>
       <div class="user-updated"><span class="key">Updated:</span> {{ user.updated_at }}</div>
-      <div class="user-user_meta group"><span class="key">User meta:</span>
+      <div class="user-user_meta item-list-item"><span class="key">User meta:</span>
         <div class="user-user_meta-channel"><span class="key">Channel:</span> {{ user.user_metadata.channel }}</div>
         <div class="user-user_meta-type"><span class="key">Type:</span> {{ user.user_metadata.type }}</div>
       </div>
@@ -26,9 +26,15 @@
       <div class="user-logins_count"><span class="key">Logins count:</span> {{ user.logins_count }}</div>
     </div>
     <div class="col-md-2">
-      <button (click)="onResetPassword(user)">Reset password (custom font icon?)</button>
-      <button (click)="onUpdate(user)">Edit (custom font icon?)</button>
-      <button (click)="onDelete(i, user)">Delete (custom font icon?)</button>
+      <button mat-icon-button aria-label="edit" class="edit-button" (click)="onResetPassword(user)">
+        <mat-icon>email</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(user)">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="delete" class="delete-button" (click)="onDelete(i, user)">
+        <mat-icon aria-hidden="true">delete_forever</mat-icon>
+      </button>
     </div>
   </div>
 </div>
