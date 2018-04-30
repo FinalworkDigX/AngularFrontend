@@ -8,9 +8,6 @@
 </div>
 <div *ngIf="dataSources" class="col-12-md">
   {{ dataSources.length }}
-  <!--<pre>-->
-<!--{{ dsJSON | json }}-->
-  <!--</pre>-->
   <div *ngFor="let dataSource of dataSources; let i = index" class="row dataSource">
     <div class="col-md-10">
       <div class="dataSource-id"><span class="key">Id:</span> {{ dataSource.id }}</div>
