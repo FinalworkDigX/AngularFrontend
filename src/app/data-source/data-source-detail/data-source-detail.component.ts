@@ -88,6 +88,7 @@ export class DataSourceDetailComponent implements OnInit {
   }
 
   onSubmitClick() {
+    this.prepareDataForSubmit();
     if (this.isNew) {
       this.dataSourceService.create(this.dataSource).subscribe(dataSource => this.responseHandler(dataSource));
     } else {
@@ -97,6 +98,7 @@ export class DataSourceDetailComponent implements OnInit {
 
   private prepareDataForSubmit() {
     // TODO: convert arrays back to objects
+    this.dataSource.destinations = this.dataDestinations;
   }
 
   onCancelClick() {
