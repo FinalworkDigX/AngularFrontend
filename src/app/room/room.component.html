@@ -16,8 +16,12 @@
         <div class="room-location"><span class="key">Location:</span> {{ room.location }}</div>
       </div>
       <div class="col-md-2">
-        <button (click)="update(room)">Edit (custom font icon?)</button>
-        <button (click)="delete(i, room)">Delete (custom font icon?)</button>
+        <button mat-icon-button aria-label="edit" class="edit-button" (click)="update(room)">
+          <mat-icon>mode_edit</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="delete" class="delete-button" (click)="delete(i, room)">
+          <mat-icon aria-hidden="true">delete_forever</mat-icon>
+        </button>
       </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
 
   <div *ngIf="isNew;then createTitle else updateTitle"></div>
   <ng-template #createTitle><h3>New Room:</h3></ng-template>
-  <ng-template #updateTitle><h3>Edit: {{ room.name | uppercase }}</h3></ng-template>
+  <ng-template #updateTitle><h3>Edit:</h3></ng-template>
 
   <div class="room-name">
     <mat-form-field>
@@ -19,9 +19,11 @@
       <input matInput [(ngModel)]="room.location" placeholder="location"/>
     </mat-form-field>
   </div>
-  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
 
-  <div *ngIf="isNew;then createButton else updateButton"></div>
-  <ng-template #createButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Create</button></ng-template>
-  <ng-template #updateButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Update</button></ng-template>
+  <div class="actionButtons">
+    <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+    <div *ngIf="isNew;then createButton else updateButton" ></div>
+    <ng-template #createButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Create</button></ng-template>
+    <ng-template #updateButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Update</button></ng-template>
+  </div>
 </div>

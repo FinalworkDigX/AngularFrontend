@@ -8,7 +8,7 @@ import { isUndefined } from "util";
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css']
+  styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit {
 
