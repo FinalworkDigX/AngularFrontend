@@ -10,7 +10,7 @@ import { isUndefined } from 'util';
 @Component({
   selector: 'app-data-item',
   templateUrl: './data-item.component.html',
-  styleUrls: ['./data-item.component.css']
+  styleUrls: ['./data-item.component.scss']
 })
 export class DataItemComponent implements OnInit {
 

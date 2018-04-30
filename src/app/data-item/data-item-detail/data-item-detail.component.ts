@@ -8,7 +8,7 @@ import { isNullOrUndefined } from 'util';
 @Component({
   selector: 'app-data-item-detail',
   templateUrl: './data-item-detail.component.html',
-  styleUrls: ['./data-item-detail.component.css']
+  styleUrls: ['./data-item-detail.component.scss']
 })
 export class DataItemDetailComponent implements OnInit {
 

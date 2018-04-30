@@ -6,9 +6,9 @@
     <button (click)="create()">Add new Data Item</button>
   </div>
 </div>
-<div *ngIf="dataItems" class="col-12-md">
+<div *ngIf="dataItems" class="col-12-md item-list">
   {{ dataItems.length }}
-  <div *ngFor="let dataItem of dataItems; let i = index" class="row beacon">
+  <div *ngFor="let dataItem of dataItems; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="dataItem-id"><span class="key">Id:</span> {{ dataItem.id }}</div>
       <div class="dataItem-roomId"><span class="key">Room Id:</span> {{ dataItem.roomId }}</div>
@@ -17,8 +17,12 @@
       <div class="dataItem-location"><span class="key">location:</span> [{{ dataItem.location.x }}, {{ dataItem.location.y }}, {{ dataItem.location.z }}]</div>
     </div>
     <div class="col-md-2">
-      <button (click)="update(dataItem)">Edit (custom font icon?)</button>
-      <button (click)="delete(i, dataItem)">Delete (custom font icon?)</button>
+      <button mat-icon-button aria-label="edit" class="edit-button" (click)="update(dataItem)">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="delete" class="delete-button" (click)="delete(i, dataItem)">
+        <mat-icon aria-hidden="true">delete_forever</mat-icon>
+      </button>
     </div>
   </div>
 </div>
