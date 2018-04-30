@@ -8,6 +8,7 @@ import { StringSchemeEntry } from '../../model/string-scheme-entry';
 import { InformationSchemeEntry } from '../../model/information-scheme-entry';
 import { ConversionSchemeEntry } from '../../model/conversion-scheme-entry';
 import { DataDestination } from '../../model/data-destination';
+import { UtilsModule } from '../../utils/utils.module';
 
 @Component({
   selector: 'app-data-source-detail',
@@ -20,9 +21,6 @@ export class DataSourceDetailComponent implements OnInit {
   @Input() dataDestinations: DataDestination[];
   isNew: Boolean = true;
   dsJSON;
-
-
-  // TODO: update code to new improved conversion entries
 
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: { dataSource: DataSource },
@@ -38,6 +36,47 @@ export class DataSourceDetailComponent implements OnInit {
       this.isNew = false;
     }
     this.prepareDataForDisplay();
+  }
+
+  isInformationSchemeEntry(val) {
+    UtilsModule.logTypeOf(val);
+    return val instanceof InformationSchemeEntry;
+  }
+
+  onAddDestination() {
+    const newDD = new DataDestination();
+    const idStringSchemeEntry = new StringSchemeEntry();
+    idStringSchemeEntry.dataLogData = 'item_id';
+    newDD.conversionScheme.push(idStringSchemeEntry);
+    newDD.conversionScheme.push(new InformationSchemeEntry());
+    this.dataDestinations.push(newDD);
+  }
+
+  onAddInformationSchemeEntry(dataDestination: DataDestination) {
+    dataDestination.conversionScheme.push(new InformationSchemeEntry());
+  }
+
+  onRemoveInformationSchemeEntry(dataDestination: DataDestination, infoSchemeEntry: InformationSchemeEntry) {
+    const index = dataDestination.conversionScheme.indexOf(infoSchemeEntry);
+    dataDestination.conversionScheme.splice(index, 1);
+  }
+
+  onRemoveDestination(dataDestination: DataDestination) {
+    const index = this.dataDestinations.indexOf(dataDestination);
+    this.dataDestinations.splice(index, 1);
+  }
+
+  onSubmitClick() {
+    this.prepareDataForSubmit();
+    if (this.isNew) {
+      this.dataSourceService.create(this.dataSource).subscribe(dataSource => this.responseHandler(dataSource));
+    } else {
+      this.dataSourceService.update(this.dataSource).subscribe(dataSource => this.responseHandler(dataSource));
+    }
+  }
+
+  onCancelClick() {
+    this.dialogRef.close(undefined);
   }
 
   private prepareDataForDisplay() {
@@ -60,49 +99,9 @@ export class DataSourceDetailComponent implements OnInit {
     }
   }
 
-
-  logTypeOf(val) {
-    console.log(typeof val);
-    if (val instanceof InformationSchemeEntry) {
-      console.log('Info entry');
-    }
-    if (val instanceof StringSchemeEntry) {
-      console.log('String entry');
-    }
-    if (val instanceof DataDestination) {
-      console.log('Data destination');
-    }
-  }
-
-  isInformationSchemeEntry(val) {
-    this.logTypeOf(val);
-    return val instanceof InformationSchemeEntry;
-  }
-
-  convertToInformation(val): InformationConversionDto {
-    if (val.hasOwnProperty('index') &&
-      val.hasOwnProperty('name')) {
-      const info = new InformationConversionDto(val);
-      return info;
-    }
-  }
-
-  onSubmitClick() {
-    this.prepareDataForSubmit();
-    if (this.isNew) {
-      this.dataSourceService.create(this.dataSource).subscribe(dataSource => this.responseHandler(dataSource));
-    } else {
-      this.dataSourceService.update(this.dataSource).subscribe(dataSource => this.responseHandler(dataSource));
-    }
-  }
-
   private prepareDataForSubmit() {
     // TODO: convert arrays back to objects
     this.dataSource.destinations = this.dataDestinations;
-  }
-
-  onCancelClick() {
-    this.dialogRef.close(undefined);
   }
 
   private responseHandler(dataSource: DataSource) {

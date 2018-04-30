@@ -18,4 +18,8 @@ export class UtilsModule {
     }
     return returnDict;
   }
+
+  public static logTypeOf(val) {
+    console.log('val.class - ' + val.constructor.name);
+  }
 }

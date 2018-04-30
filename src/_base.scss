@@ -1,0 +1,12 @@
+@import "variables";
+
+.edit-button:hover {
+  color: $accent;
+}
+.delete-button:hover {
+  color: $warn;
+}
+
+.actionButtons {
+  float: right;
+}
