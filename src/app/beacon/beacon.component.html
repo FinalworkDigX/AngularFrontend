@@ -6,9 +6,9 @@
     <button (click)="create()">Add new beacon</button>
   </div>
 </div>
-<div *ngIf="beacons" class="col-12-md">
+<div *ngIf="beacons" class="col-12-md item-list">
   {{ beacons.length }}
-  <div *ngFor="let beacon of beacons; let i = index" class="row beacon">
+  <div *ngFor="let beacon of beacons; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="beacon-id"><span class="key">Id:</span> {{ beacon.id }}</div>
       <div class="beacon-roomId"><span class="key">Room Id:</span> {{ beacon.roomId }}</div>

@@ -6,9 +6,9 @@
     <button (click)="create()">Add new room</button>
   </div>
 </div>
-<div *ngIf="rooms" class="col-12-md">
+<div *ngIf="rooms" class="col-12-md item-list">
   {{ rooms.length }}
-    <div *ngFor="let room of rooms; let i = index" class="row room">
+    <div *ngFor="let room of rooms; let i = index" class="row item-list-item">
       <div class="col-md-10">
         <div class="room-id"><span class="key">Id:</span> {{ room.id }}</div>
         <div class="room-name"><span class="key">Name:</span> {{ room.name }}</div>
