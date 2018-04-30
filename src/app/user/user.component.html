@@ -26,7 +26,7 @@
       <div class="user-logins_count"><span class="key">Logins count:</span> {{ user.logins_count }}</div>
     </div>
     <div class="col-md-2">
-      <button mat-icon-button aria-label="edit" class="edit-button" (click)="onResetPassword(user)">
+      <button mat-icon-button aria-label="reset-password" class="reset-password-button" (click)="onResetPassword(user)">
         <mat-icon>email</mat-icon>
       </button>
       <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(user)">
@@ -37,4 +37,6 @@
       </button>
     </div>
   </div>
+  <!--Debug-->
+  <button (click)="onResetConnection()"> </button>
 </div>

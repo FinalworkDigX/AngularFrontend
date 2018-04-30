@@ -38,4 +38,8 @@ export class UserService {
       error => console.log(error)
     );
   }
+
+  resetConnection() {
+    this.http.get('/api/v1/debug/workaround/mgmt', this.sessionService.httpOptions);
+  }
 }

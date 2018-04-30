@@ -55,6 +55,10 @@ export class UserComponent implements OnInit {
     this.authenticationService.resetPassword(login);
   }
 
+  onResetConnection() {
+    this.userService.resetConnection();
+  }
+
   private callDialog(user: User) {
     const dialogRef = this.dialog.open(UserDetailComponent, {
       data: { user: user }

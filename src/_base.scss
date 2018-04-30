@@ -1,5 +1,8 @@
 @import "variables";
 
+.reset-password-button:hover {
+  color: $extra;
+}
 .edit-button:hover {
   color: $accent;
 }
