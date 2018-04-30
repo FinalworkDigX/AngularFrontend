@@ -13,7 +13,7 @@ import { UtilsModule } from '../utils/utils.module';
 @Component({
   selector: 'app-beacon',
   templateUrl: './beacon.component.html',
-  styleUrls: ['./beacon.component.css']
+  styleUrls: ['./beacon.component.scss']
 })
 export class BeaconComponent implements OnInit {
 

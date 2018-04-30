@@ -7,7 +7,7 @@ import { Room } from '../../model/room';
 @Component({
   selector: 'app-beacon-detail',
   templateUrl: './beacon-detail.component.html',
-  styleUrls: ['./beacon-detail.component.css']
+  styleUrls: ['./beacon-detail.component.scss']
 })
 export class BeaconDetailComponent implements OnInit {
 

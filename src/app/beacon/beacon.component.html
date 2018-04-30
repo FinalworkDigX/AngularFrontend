@@ -20,8 +20,12 @@
       <div class="beacon-lastUpdated"><span class="key">Last Updated:</span> {{ beacon.lastUpdated }}</div>
     </div>
     <div class="col-md-2">
-      <button (click)="update(beacon)">Edit (custom font icon?)</button>
-      <button (click)="delete(i, beacon)">Delete (custom font icon?)</button>
+      <button mat-icon-button aria-label="edit" class="edit-button" (click)="update(beacon)">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="delete" class="delete-button" (click)="delete(i, beacon)">
+        <mat-icon aria-hidden="true">delete_forever</mat-icon>
+      </button>
     </div>
   </div>
 </div>

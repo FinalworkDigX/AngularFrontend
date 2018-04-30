@@ -2,7 +2,7 @@
 
   <div *ngIf="isNew;then createTitle else updateTitle"></div>
   <ng-template #createTitle><h3>New Beacon:</h3></ng-template>
-  <ng-template #updateTitle><h3>Edit: {{ beacon.name | uppercase }}</h3></ng-template>
+  <ng-template #updateTitle><h3>Edit:</h3></ng-template>
 
   <!--ToDo list of rooms / search w/ auto-complete? -->
   <!--<div class="beacon-roomId">-->
@@ -45,10 +45,12 @@
     </mat-form-field>
   </div>
 
-  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
-
-  <div *ngIf="isNew;then createButton else updateButton"></div>
-  <ng-template #createButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Create</button></ng-template>
-  <ng-template #updateButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Update</button></ng-template>
+  <!-- Buttons -->
+  <div class="actionButtons">
+    <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+    <div *ngIf="isNew;then createButton else updateButton" ></div>
+    <ng-template #createButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Create</button></ng-template>
+    <ng-template #updateButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Update</button></ng-template>
+  </div>
 </div>
 
