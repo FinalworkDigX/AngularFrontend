@@ -3,7 +3,10 @@
     <h3>Data Sources</h3>
   </div>
   <div class="col-md-6">
-    <button (click)="create()">Add new Data source</button>
+    <button (click)="onCreate()">Add new Data source</button>
+  </div>
+  <div class="col-md-6">
+    <button (click)="onRestartClient()">Restart conversion client</button>
   </div>
 </div>
 <div *ngIf="dataSources" class="col-12-md item-list">
@@ -13,10 +16,10 @@
       <div class="dataSource-id"><span class="key">Id:</span> {{ dataSource.id }}</div>
     </div>
     <div class="col-md-2">
-      <button mat-icon-button aria-label="edit" class="edit-button" (click)="update(dataSource)">
+      <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(dataSource)">
         <mat-icon>mode_edit</mat-icon>
       </button>
-      <button mat-icon-button aria-label="delete" class="delete-button" (click)="delete(i, dataSource)">
+      <button mat-icon-button aria-label="delete" class="delete-button" (click)="onDelete(i, dataSource)">
         <mat-icon aria-hidden="true">delete_forever</mat-icon>
       </button>
     </div>

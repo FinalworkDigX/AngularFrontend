@@ -18,6 +18,14 @@ export class DataSourceService {
     return this.http.get<DataSource[]>(this.baseUrl, this.sessionService.httpOptions);
   }
 
+  restartClient() {
+    this.http.get(this.baseUrl + '/restartClient', this.sessionService.httpOptions)
+      .subscribe(
+        (res: any) => {},
+        error => console.log(error)
+      );
+  }
+
   create(dataSource: DataSource): Observable<DataSource> {
     return this.http.post<DataSource>(this.baseUrl, dataSource, this.sessionService.httpOptions);
   }

@@ -32,17 +32,21 @@ export class DataSourceComponent implements OnInit {
     });
   }
 
-  create() {
+  onCreate() {
     this.callDialog(new DataSource());
   }
 
-  update(dataSource: DataSource) {
+  onUpdate(dataSource: DataSource) {
     this.callDialog(dataSource);
   }
 
-  delete(arrayIndex: number, dataSource: DataSource) {
+  onDelete(arrayIndex: number, dataSource: DataSource) {
     this.dataSourceService.delete(dataSource);
     this.dataSources.splice(arrayIndex, 1);
+  }
+
+  onRestartClient() {
+    this.dataSourceService.restartClient();
   }
 
   private callDialog(dataSource: DataSource) {

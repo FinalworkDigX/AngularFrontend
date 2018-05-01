@@ -3,7 +3,7 @@
     <h3>Rooms</h3>
   </div>
   <div class="col-md-6">
-    <button (click)="create()">Add new room</button>
+    <button (click)="onCreate()">Add new room</button>
   </div>
 </div>
 <div *ngIf="rooms" class="col-12-md item-list">
@@ -16,10 +16,10 @@
         <div class="room-location"><span class="key">Location:</span> {{ room.location }}</div>
       </div>
       <div class="col-md-2">
-        <button mat-icon-button aria-label="edit" class="edit-button" (click)="update(room)">
+        <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(room)">
           <mat-icon>mode_edit</mat-icon>
         </button>
-        <button mat-icon-button aria-label="delete" class="delete-button" (click)="delete(i, room)">
+        <button mat-icon-button aria-label="delete" class="delete-button" (click)="onDelete(i, room)">
           <mat-icon aria-hidden="true">delete_forever</mat-icon>
         </button>
       </div>

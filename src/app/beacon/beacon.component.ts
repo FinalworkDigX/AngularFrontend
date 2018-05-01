@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Beacon } from '../model/beacon';
-import { RoomDetailComponent } from '../room/room-detail/room-detail.component';
 import { Room } from '../model/room';
 import { MatDialog } from '@angular/material';
 import { BeaconService } from '../service/beacon.service';
 import { BeaconDetailComponent } from './beacon-detail/beacon-detail.component';
 import { isUndefined } from 'util';
 import { RoomService } from '../service/room.service';
-import { utils } from 'protractor';
-import { UtilsModule } from '../utils/utils.module';
 
 @Component({
   selector: 'app-beacon',
@@ -31,24 +28,24 @@ export class BeaconComponent implements OnInit {
     this.getRooms();
   }
 
-  getBeacons() {
+  private getBeacons() {
     this.beaconService.getAll().subscribe(beacons => this.beacons = beacons);
   }
 
-  getRooms() {
+  private getRooms() {
     // this.roomService.getAll().subscribe(rooms_ => this.roomsDict = UtilsModule.arrayToDictOnId(rooms_));
     this.roomService.getAll().subscribe(rooms_ => this.rooms = rooms_);
   }
 
-  create() {
+  onCreate() {
     this.callDialog(new Beacon());
   }
 
-  update(beacon: Beacon) {
+  onUpdate(beacon: Beacon) {
     this.callDialog(beacon);
   }
 
-  delete(arrayIndex: number, beacon: Beacon) {
+  onDelete(arrayIndex: number, beacon: Beacon) {
     this.beaconService.delete(beacon);
     this.beacons.splice(arrayIndex, 1);
   }

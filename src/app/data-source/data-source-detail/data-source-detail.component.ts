@@ -3,10 +3,8 @@ import { DataSource } from '../../model/data-source';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { DataSourceService } from '../../service/data-source.service';
 import { isNullOrUndefined } from 'util';
-import { InformationConversionDto } from '../../dto/information-conversion-dto';
 import { StringSchemeEntry } from '../../model/string-scheme-entry';
 import { InformationSchemeEntry } from '../../model/information-scheme-entry';
-import { ConversionSchemeEntry } from '../../model/conversion-scheme-entry';
 import { DataDestination } from '../../model/data-destination';
 import { UtilsModule } from '../../utils/utils.module';
 

@@ -36,15 +36,15 @@ export class DataItemComponent implements OnInit {
     this.roomService.getAll().subscribe(rooms => this.rooms = rooms);
   }
 
-  create() {
+  onCreate() {
     this.callDialog(new DataItem());
   }
 
-  update(dataItem: DataItem) {
+  onUpdate(dataItem: DataItem) {
     this.callDialog(dataItem);
   }
 
-  delete(arrayIndex: number, dataItem: DataItem) {
+  onDelete(arrayIndex: number, dataItem: DataItem) {
     this.dataItemService.delete(dataItem);
     this.dataItems.splice(arrayIndex, 1);
   }

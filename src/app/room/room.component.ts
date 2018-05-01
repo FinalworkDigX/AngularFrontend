@@ -3,7 +3,7 @@ import { RoomService } from '../service/room.service';
 import { Room } from '../model/room';
 import { MatDialog } from '@angular/material';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
-import { isUndefined } from "util";
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-room',
@@ -20,17 +20,27 @@ export class RoomComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.geRooms();
+    this.getRooms();
   }
 
-  create() {
+  private getRooms() {
+    this.roomService.getAll()
+      .subscribe(rooms => this.rooms = rooms);
+  }
+
+  onCreate() {
     // Subscribe to return error or success!
     this.callDialog(new Room());
   }
 
-  update(room: Room) {
+  onUpdate(room: Room) {
     // Subscribe to return error or success!
     this.callDialog(room);
+  }
+
+  onDelete(arrayIndex: number, room: Room) {
+    this.roomService.delete(room);
+    this.rooms.splice(arrayIndex, 1);
   }
 
   private callDialog(room: Room) {
@@ -43,16 +53,6 @@ export class RoomComponent implements OnInit {
         this.updateOrInsert(result);
       }
     });
-  }
-
-  delete(arrayIndex: number, room: Room) {
-    this.roomService.delete(room);
-    this.rooms.splice(arrayIndex, 1);
-  }
-
-  geRooms() {
-    this.roomService.getAll()
-      .subscribe(rooms => this.rooms = rooms);
   }
 
   private updateOrInsert(room: Room) {

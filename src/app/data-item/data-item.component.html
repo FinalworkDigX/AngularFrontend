@@ -3,7 +3,7 @@
     <h3>Data Items</h3>
   </div>
   <div class="col-md-6">
-    <button (click)="create()">Add new Data Item</button>
+    <button (click)="onCreate()">Add new Data Item</button>
   </div>
 </div>
 <div *ngIf="dataItems" class="col-12-md item-list">
@@ -17,10 +17,10 @@
       <div class="dataItem-location"><span class="key">location:</span> [{{ dataItem.location.x }}, {{ dataItem.location.y }}, {{ dataItem.location.z }}]</div>
     </div>
     <div class="col-md-2">
-      <button mat-icon-button aria-label="edit" class="edit-button" (click)="update(dataItem)">
+      <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(dataItem)">
         <mat-icon>mode_edit</mat-icon>
       </button>
-      <button mat-icon-button aria-label="delete" class="delete-button" (click)="delete(i, dataItem)">
+      <button mat-icon-button aria-label="delete" class="delete-button" (click)="onDelete(i, dataItem)">
         <mat-icon aria-hidden="true">delete_forever</mat-icon>
       </button>
     </div>
