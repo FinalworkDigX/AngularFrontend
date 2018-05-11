@@ -1,0 +1,55 @@
+<div *ngIf="dataItemRequest">
+  <div><h3>Process DataItem request</h3></div>
+
+  <div class="dataItemRequest-id">
+    <div class="dataItemRequests-id"><span class="key">Request Id:</span><p>{{ dataItemRequest.id }}</p></div>
+  </div>
+  <div class="dataItemRequest-dataItemName">
+    <mat-form-field>
+      <input matInput [(ngModel)]="dataItemName" placeholder="Data Item Name"/>
+    </mat-form-field>
+  </div>
+  <div class="dataItemRequest-beacon request-group">
+    <h5>Beacon info:</h5>
+    <div class="sub-group">
+      <div class="dataItemRequest-beacon-name item"><span class="key">Name:</span> {{ dataItemRequest.beacon.name }}</div>
+      <div class="dataItemRequest-beacon-description item"><span class="key">Description:</span> {{ dataItemRequest.beacon.description }}</div>
+      <div class="dataItemRequest-beacon-major item"><span class="key">Major:</span> {{ dataItemRequest.beacon.major }}</div>
+      <div class="dataItemRequest-beacon-minor item"><span class="key">Minor:</span> {{ dataItemRequest.beacon.minor }}</div>
+    </div>
+  </div>
+
+  <div class="dataItemRequest-room request-group">
+    <h5>Room info:</h5>
+    <div class="sub-group">
+      <div class="dataItemRequest-room-name item"><span class="key">Name:</span> {{ dataItemRequest.room.name }}</div>
+      <div class="dataItemRequest-room-description item"><span class="key">Description:</span> {{ dataItemRequest.room.description }}</div>
+      <div class="dataItemRequest-room-location item"><span class="key">Location:</span> {{ dataItemRequest.room.location }}</div>
+    </div>
+  </div>
+
+  <div class="dataItemRequest-currentDataItem request-group">
+    <h5>Current Data Item:</h5>
+    <div *ngIf="hasCurrentDataItem;then hasCurrent else noCurrent" ></div>
+    <ng-template #hasCurrent>
+      <p>No Current DataItem</p>
+    </ng-template>
+    <ng-template #noCurrent>
+      <p>Accepting this request will PERMANENTLY remove the current DataItem!</p>
+      <div class="sub-group">
+        <div class="dataItemRequest-currentDataItem-name"><span class="key">Name:</span> {{ dataItemRequest.currentDataItem.name }}</div>
+        <div class="dataItemRequest-currentDataItem-location"><span class="key">ItemId:</span> {{ dataItemRequest.currentDataItem.itemId }}</div>
+      </div>
+    </ng-template>
+
+  </div>
+
+
+  <!-- Buttons -->
+  <div class="actionButtons">
+    <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="onAcceptClick()">Accept</button>
+    <button mat-raised-button color="primary" (click)="onRefuseClick()">Refuse</button>
+  </div>
+</div>
+

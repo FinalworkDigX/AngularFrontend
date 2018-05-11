@@ -30,6 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataSourceComponent } from './data-source/data-source.component';
 import { DataSourceService } from './service/data-source.service';
 import { DataSourceDetailComponent } from './data-source/data-source-detail/data-source-detail.component';
+import { DataItemRequestComponent } from './data-item-request/data-item-request.component';
+import { DataItemRequestDetailComponent } from './data-item-request/data-item-request-detail/data-item-request-detail.component';
+import { DataItemRequestService } from './service/data-item-request.service';
 
 @NgModule({
   imports: [
@@ -59,6 +62,8 @@ import { DataSourceDetailComponent } from './data-source/data-source-detail/data
     UserDetailComponent,
     DataSourceComponent,
     DataSourceDetailComponent,
+    DataItemRequestComponent,
+    DataItemRequestDetailComponent,
   ],
   entryComponents: [
     RoomDetailComponent,
@@ -66,12 +71,14 @@ import { DataSourceDetailComponent } from './data-source/data-source-detail/data
     DataItemDetailComponent,
     DataSourceDetailComponent,
     UserDetailComponent,
+    DataItemRequestDetailComponent,
   ],
   providers: [
     UserService,
     RoomService,
     BeaconService,
     DataItemService,
+    DataItemRequestService,
     DataSourceService,
     AuthenticationService,
     JwtHelperService,
