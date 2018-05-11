@@ -33,6 +33,7 @@ export class DataItemRequestComponent implements OnInit {
 
   onDelete(arrayIndex: number, dataItemRequest: DataItemRequest) {
     this.dataItemRequestService.delete(dataItemRequest);
+    this.dataItemRequests.splice(arrayIndex, 1);
   }
 
   private callDialog(request: DataItemRequest) {

@@ -35,12 +35,13 @@ export class DataItemRequestDetailComponent implements OnInit {
     dataItem.location = new Vector3();
     dataItem.itemId = 'temp_item_id';
 
-    this.dataItemService.create(dataItem);
-    this.responseHandler();
+    this.dataItemService.create(dataItem).subscribe(value => {
+      // this.dataItemRequestService.delete(this.dataItemRequest);
+      this.responseHandler();
+    });
   }
 
   onRefuseClick() {
-    this.dataItemRequestService.delete(this.dataItemRequest);
     this.responseHandler();
   }
 
