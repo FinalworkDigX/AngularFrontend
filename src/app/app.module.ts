@@ -33,6 +33,7 @@ import { DataSourceDetailComponent } from './data-source/data-source-detail/data
 import { DataItemRequestComponent } from './data-item-request/data-item-request.component';
 import { DataItemRequestDetailComponent } from './data-item-request/data-item-request-detail/data-item-request-detail.component';
 import { DataItemRequestService } from './service/data-item-request.service';
+import { SocketService } from './service/socket.service';
 
 @NgModule({
   imports: [
@@ -83,7 +84,8 @@ import { DataItemRequestService } from './service/data-item-request.service';
     AuthenticationService,
     JwtHelperService,
     AdminGuardService,
-    SessionService
+    SessionService,
+    SocketService
   ],
   bootstrap: [AppComponent]
 })

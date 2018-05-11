@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Login } from '../model/login';
+import { SocketService } from '../service/socket.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,11 +11,17 @@ export class DashboardComponent implements OnInit {
 
   login: Login;
 
-  constructor() { }
+  constructor(
+    private webSocket: SocketService,
+  ) { }
 
   ngOnInit() {
-    this.login = new Login();
-    this.login.email = 'testetetet';
+    this.handleDataLogs();
   }
 
+  private handleDataLogs() {
+    this.webSocket.dataLog.subscribe(dataLog => {
+      console.log(dataLog);
+    });
+  }
 }
