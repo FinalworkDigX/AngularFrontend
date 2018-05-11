@@ -25,3 +25,18 @@
   color: #F75421;
   font-weight: bold;
 }
+.content {
+  padding: 0;
+}
+
+.component-title {
+  border-bottom: 1px solid black;
+  padding: .86em;
+  background: #666666;
+  color: #fff;
+  min-height: 8em;
+
+  h2 {
+    padding-top: .2em;
+  }
+}
