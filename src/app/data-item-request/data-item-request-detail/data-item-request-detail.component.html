@@ -28,20 +28,9 @@
     </div>
   </div>
 
-  <div class="dataItemRequest-currentDataItem request-group">
-    <h5>Current Data Item:</h5>
-    <div *ngIf="hasCurrentDataItem;then hasCurrent else noCurrent" ></div>
-    <ng-template #hasCurrent>
-      <p>No Current DataItem</p>
-    </ng-template>
-    <ng-template #noCurrent>
-      <p>Accepting this request will PERMANENTLY remove the current DataItem!</p>
-      <div class="sub-group">
-        <div class="dataItemRequest-currentDataItem-name"><span class="key">Name:</span> {{ dataItemRequest.currentDataItem.name }}</div>
-        <div class="dataItemRequest-currentDataItem-location"><span class="key">ItemId:</span> {{ dataItemRequest.currentDataItem.itemId }}</div>
-      </div>
-    </ng-template>
-
+  <div class="alert alert-warning">
+      Until the trilateration algorithm is fixed, issues may occur on multiple dataItems per room per beacon,
+      Rooms should be seen as Beacon extensions without any other purpose.
   </div>
 
 

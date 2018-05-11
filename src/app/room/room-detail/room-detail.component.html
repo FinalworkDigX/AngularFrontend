@@ -20,6 +20,12 @@
     </mat-form-field>
   </div>
 
+
+  <div class="alert alert-warning">
+    Until the trilateration algorithm is fixed, issues may occur on multiple dataItems per room per beacon,
+    Rooms should be seen as Beacon extensions without any other purpose.
+  </div>
+
   <div class="actionButtons">
     <button mat-raised-button (click)="onCancelClick()">Cancel</button>
     <div *ngIf="isNew;then createButton else updateButton" ></div>
