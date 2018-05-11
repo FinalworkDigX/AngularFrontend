@@ -34,9 +34,11 @@ import { DataItemRequestComponent } from './data-item-request/data-item-request.
 import { DataItemRequestDetailComponent } from './data-item-request/data-item-request-detail/data-item-request-detail.component';
 import { DataItemRequestService } from './service/data-item-request.service';
 import { SocketService } from './service/socket.service';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
+    ChartsModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

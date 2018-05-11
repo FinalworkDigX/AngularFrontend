@@ -1,1 +1,13 @@
 @import "../../base";
+
+.dataLogChart {
+  margin-bottom: 1em;
+  canvas {
+    width: 100%;
+    max-height: 15em;
+  }
+}
+
+.stats {
+
+}

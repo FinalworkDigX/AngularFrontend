@@ -3,6 +3,24 @@
     <h2>Dashboard</h2>
   </div>
 </div>
-<div *ngIf="login">
-  <p>{{ login.email }}</p>
+<div class="col-12-md">
+  <div class="col-md-12 dataLogChart">
+    <canvas baseChart
+            [chartType]="lineChartType"
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"></canvas>
+    <hr/>
+  </div>
+  <div class="col-md-12 stats">
+    <h3>Stats</h3>
+    <div>
+      Pending requests: {{ pendingRequestsCount }}
+    </div>
+  </div>
 </div>
+
+<script src="node_modules/chart.js/src/chart.js"></script>
