@@ -81,20 +81,22 @@ export class DataSourceDetailComponent implements OnInit {
     this.dataDestinations = [];
     if (this.isNew) {
       this.dataSource.destinations = [];
-    } else {
-      for (const dd of this.dataSource.destinations) {
-        const newDD = new DataDestination(dd.destination);
-        for (let ce of dd.conversionScheme) {
-          if (typeof ce.dataLogData === 'string') {
-            ce = new StringSchemeEntry(ce.incomingDataKey, ce.dataLogData);
-          } else {
-            ce = new InformationSchemeEntry(ce.incomingDataKey, ce.dataLogData);
-          }
-          newDD.conversionScheme.push(ce);
-        }
-        this.dataDestinations.push(newDD);
-      }
+      this.onAddDestination();
     }
+
+    for (const dd of this.dataSource.destinations) {
+      const newDD = new DataDestination(dd.destination);
+      for (let ce of dd.conversionScheme) {
+        if (typeof ce.dataLogData === 'string') {
+          ce = new StringSchemeEntry(ce.incomingDataKey, ce.dataLogData);
+        } else {
+          ce = new InformationSchemeEntry(ce.incomingDataKey, ce.dataLogData);
+        }
+        newDD.conversionScheme.push(ce);
+      }
+      this.dataDestinations.push(newDD);
+    }
+
   }
 
   private prepareDataForSubmit() {

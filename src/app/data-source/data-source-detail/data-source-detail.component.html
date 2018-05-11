@@ -4,58 +4,61 @@
   <ng-template #createTitle><h3>New Data Source:</h3></ng-template>
   <ng-template #updateTitle><h3>Edit:</h3></ng-template>
 
-  <div class="dataSource-url">
-    <mat-form-field>
-      <input matInput [(ngModel)]="dataSource.url" placeholder="URL"/>
-    </mat-form-field>
-  </div>
-  <div class="dataSource-destinations">
-    <button mat-raised-button color="accent" (click)="onAddDestination()" class="space">Add Destination</button>
-    <div *ngFor="let dataDestination of dataDestinations" class="dataDestination">
-      <mat-form-field>
-        <input matInput [(ngModel)]="dataDestination.destination" placeholder="destination"/>
-      </mat-form-field>
-
-      <h3>Conversion scheme</h3>
-      <div class="conversionScheme">
-        <div *ngFor="let conversion of dataDestination.conversionScheme">
-
-          <div *ngIf="isInformationSchemeEntry(conversion); then informationDLD else stringDLD"></div>
-          <ng-template #informationDLD>
-            <mat-form-field>
-              <input matInput [(ngModel)]="conversion.incomingDataKey" placeholder="Incoming data: key"/>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [(ngModel)]="conversion.dataLogData.index" placeholder="Information: display index"/>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput [(ngModel)]="conversion.dataLogData.name" placeholder="Information: display name"/>
-            </mat-form-field>
-            <button mat-icon-button class="delete-button" (click)="onRemoveInformationSchemeEntry(dataDestination, conversion)">
-              <mat-icon>remove_circle_outline</mat-icon>
-            </button>
-          </ng-template>
-
-          <ng-template #stringDLD>
-            <div class="schemeItemId">
-              <mat-form-field>
-                <input matInput [(ngModel)]="conversion.incomingDataKey" placeholder="Incoming data: Item id"/>
-              </mat-form-field>
-            </div>
-            <button mat-raised-button color="accent" class="space" (click)="onAddInformationSchemeEntry(dataDestination)">Add Information scheme entry</button>
-          </ng-template>
-        </div>
-      </div>
-
-      <button mat-raised-button color="warn" (click)="onRemoveDestination(dataDestination)">Remove</button>
+  <form (ngSubmit)="onSubmitClick()" #roomForm="ngForm">
+    <div class="dataSource-url">
+      <mat-input-container>
+        <input matInput [(ngModel)]="dataSource.url" placeholder="URL" name="url" required/>
+      </mat-input-container>
     </div>
-  </div>
-  <!-- Buttons -->
-  <div class="actionButtons">
-    <button mat-raised-button (click)="onCancelClick()">Cancel</button>
-    <div *ngIf="isNew;then createButton else updateButton" ></div>
-    <ng-template #createButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Create</button></ng-template>
-    <ng-template #updateButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Update</button></ng-template>
-  </div>
+    <div class="dataSource-destinations">
+      <button mat-raised-button color="accent" type="button" (click)="onAddDestination()" class="space">Add Destination</button>
+      <div *ngFor="let dataDestination of dataDestinations; let i = index" class="dataDestination">
+        <mat-input-container>
+          <input matInput [(ngModel)]="dataDestination.destination" placeholder="destination" name="destination_url_{{ i }}" required/>
+        </mat-input-container>
+
+        <h3>Conversion scheme</h3>
+        <div class="conversionScheme">
+          <div *ngFor="let conversion of dataDestination.conversionScheme; let j = index">
+
+            <div *ngIf="isInformationSchemeEntry(conversion); then informationDLD else stringDLD"></div>
+            <ng-template #informationDLD>
+              <mat-input-container>
+                <input matInput [(ngModel)]="conversion.incomingDataKey" placeholder="Incoming data: key" name="incomming_data_key_{{ i }}_{{ j }}" required/>
+              </mat-input-container>
+              <mat-input-container>
+                <input matInput [(ngModel)]="conversion.dataLogData.index" placeholder="Information: display index" type="number" name="info_display_index_{{ i }}_{{ j }}" required/>
+              </mat-input-container>
+              <mat-input-container>
+                <input matInput [(ngModel)]="conversion.dataLogData.name" placeholder="Information: display name" name="info_display_name_{{ i }}_{{ j }}" required/>
+              </mat-input-container>
+              <button mat-icon-button class="delete-button" type="button" (click)="onRemoveInformationSchemeEntry(dataDestination, conversion)">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+            </ng-template>
+
+            <ng-template #stringDLD>
+              <div class="schemeItemId">
+                <mat-input-container>
+                  <input matInput [(ngModel)]="conversion.incomingDataKey" placeholder="Incoming data: Item id"  name="incomming_data_key_{{ i }}" required/>
+                </mat-input-container>
+              </div>
+              <button mat-raised-button color="accent" class="space" type="button" (click)="onAddInformationSchemeEntry(dataDestination)">Add Information scheme entry</button>
+            </ng-template>
+          </div>
+        </div>
+
+        <button mat-raised-button color="warn" type="button" (click)="onRemoveDestination(dataDestination)">Remove</button>
+      </div>
+    </div>
+    <!-- Buttons -->
+    <div class="actionButtons">
+      <button mat-raised-button type="button" (click)="onCancelClick()">Cancel</button>
+
+      <div *ngIf="isNew;then createButton else updateButton" ></div>
+      <ng-template #createButton><button mat-raised-button color="primary" type="submit" [disabled]="!roomForm.form.valid">Create</button></ng-template>
+      <ng-template #updateButton><button mat-raised-button color="primary" type="submit" [disabled]="!roomForm.form.valid">Update</button></ng-template>
+    </div>
+  </form>
 </div>
 
