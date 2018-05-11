@@ -4,32 +4,43 @@
   <ng-template #createTitle><h3>New Room:</h3></ng-template>
   <ng-template #updateTitle><h3>Edit:</h3></ng-template>
 
-  <div class="room-name">
-    <mat-form-field>
-      <input matInput [(ngModel)]="room.name" placeholder="name"/>
-    </mat-form-field>
-  </div>
-  <div class="room-description">
-    <mat-form-field>
-      <input matInput [(ngModel)]="room.description" placeholder="description"/>
-    </mat-form-field>
-  </div>
-  <div class="room-location">
-    <mat-form-field>
-      <input matInput [(ngModel)]="room.location" placeholder="location"/>
-    </mat-form-field>
-  </div>
+  <form (ngSubmit)="onSubmitClick()" #roomForm="ngForm">
+    <div class="room-name">
+      <mat-input-container>
+        <input matInput
+               [(ngModel)]="room.name"
+               placeholder="name"
+               name="nameControl"
+               required/>
+      </mat-input-container>
+    </div>
+    <div class="room-description">
+      <mat-input-container>
+        <input matInput [(ngModel)]="room.description" placeholder="description" name="description"/>
+      </mat-input-container>
+    </div>
+    <div class="room-location">
+      <mat-input-container>
+        <input matInput
+               [(ngModel)]="room.location"
+               placeholder="location"
+               name="locationControl"
+               required/>
+      </mat-input-container>
+    </div>
 
 
-  <div class="alert alert-warning">
-    Until the trilateration algorithm is fixed, issues may occur on multiple dataItems per room per beacon,
-    Rooms should be seen as Beacon extensions without any other purpose.
-  </div>
+    <div class="alert alert-warning">
+      Until the trilateration algorithm is fixed, issues may occur on multiple dataItems per room per beacon,
+      Rooms should be seen as Beacon extensions without any other purpose.
+    </div>
 
-  <div class="actionButtons">
-    <button mat-raised-button (click)="onCancelClick()">Cancel</button>
-    <div *ngIf="isNew;then createButton else updateButton" ></div>
-    <ng-template #createButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Create</button></ng-template>
-    <ng-template #updateButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Update</button></ng-template>
-  </div>
+    <div class="actionButtons">
+      <button mat-raised-button type="button" (click)="onCancelClick()">Cancel</button>
+
+      <div *ngIf="isNew;then createButton else updateButton" ></div>
+      <ng-template #createButton><button mat-raised-button color="primary" type="submit" [disabled]="!roomForm.form.valid">Create</button></ng-template>
+      <ng-template #updateButton><button mat-raised-button color="primary" type="submit" [disabled]="!roomForm.form.valid">Update</button></ng-template>
+    </div>
+  </form>
 </div>
