@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { DataItemService } from '../../service/data-item.service';
 import { DataItem } from '../../model/data-item';
 import { isNullOrUndefined } from 'util';
+import { Vector3 } from '../../model/vector3';
 
 @Component({
   selector: 'app-data-item-detail',
@@ -28,6 +29,8 @@ export class DataItemDetailComponent implements OnInit {
 
     if (!isNullOrUndefined(this.dataItem.id )) {
       this.isNew = false;
+    } else {
+      this.dataItem.location = new Vector3();
     }
   }
 
