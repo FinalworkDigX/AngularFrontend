@@ -8,10 +8,16 @@
   </div>
 </div>
 <div *ngIf="dataSources" class="col-12-md item-list">
-  {{ dataSources.length }}
   <div *ngFor="let dataSource of dataSources; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="dataSource-id"><span class="key">Id:</span> {{ dataSource.id }}</div>
+      <div class="dataSource-url"><span class="key">URL:</span> {{ dataSource.url }}</div>
+
+      <div class="sub-group">
+        <div *ngFor="let dataDestination of dataSource.destinations">
+          <div class="dataSource-dataDestination-destination"><span class="key">Destination:</span> {{ dataDestination.destination }}</div>
+        </div>
+      </div>
     </div>
     <div class="col-md-2">
       <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(dataSource)">

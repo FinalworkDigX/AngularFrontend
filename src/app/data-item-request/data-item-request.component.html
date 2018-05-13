@@ -4,13 +4,18 @@
   </div>
 </div>
 <div *ngIf="dataItemRequests" class="col-12-md item-list">
-  {{ dataItemRequests.length }}
   <div *ngFor="let request of dataItemRequests; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="dataItemRequests-id"><span class="key">Id:</span> {{ request.id }}</div>
-      <div class="dataItemRequests-beaconId"><span class="key">Beacon Id:</span> {{ request.beaconId }}</div>
+      <div class="dataItemRequests-room"><span class="key">Room:</span> {{ request.room.name }}</div>
+      <div class="dataItemRequests-beacon"><span class="key">Beacon:</span> {{ request.beacon.name }}</div>
+      <div class="sub-group">
+        <div class="dataItemRequests-beacon-major"><span class="key">Major:</span> {{ request.beacon.major }}</div>
+        <div class="dataItemRequests-beacon-minor"><span class="key">Minor:</span> {{ request.beacon.minor }}</div>
+
+      </div>
       <div class="dataItemRequests-dataItemName"><span class="key">Data Item name:</span> {{ request.dataItemName }}</div>
-      <div class="dataItemRequests-requester"><span class="key">Requester:</span><a href="mailto:{{ request.requester }}">{{ request.requester }}</a></div>
+      <div class="dataItemRequests-requester"><span class="key">Requester:</span> <a href="mailto:{{ request.requester }}">{{ request.requester }}</a></div>
     </div>
     <div class="col-md-2">
       <button mat-icon-button aria-label="process" class="edit-button" (click)="onProcess(request)">

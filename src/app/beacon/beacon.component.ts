@@ -50,12 +50,17 @@ export class BeaconComponent implements OnInit {
     this.beacons.splice(arrayIndex, 1);
   }
 
+  filterRoomArray(id: string): Room {
+    return this.rooms.find(obj => obj.id === id);
+  }
+
   private callDialog(beacon_: Beacon) {
     const dialogRef = this.dialog.open(BeaconDetailComponent, {
       data: {
         beacon: beacon_,
         rooms: this.rooms
-      }
+      },
+      panelClass: 'medium-mat-dialog'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {

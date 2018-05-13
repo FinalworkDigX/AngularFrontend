@@ -40,7 +40,8 @@ export class DataItemRequestComponent implements OnInit {
     const dialogRef = this.dialog.open(DataItemRequestDetailComponent, {
       data: {
         dataItemRequest: request
-      }
+      },
+      panelClass: 'medium-mat-dialog'
     });
     dialogRef.afterClosed().subscribe(requestId => {
       if (!isUndefined(requestId)) {

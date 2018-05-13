@@ -16,6 +16,14 @@ md-icon{
   background: $primary-color;
 }
 
+.medium-mat-dialog {
+  max-width: 440px;
+}
+.large-mat-dialog {
+  max-width: 760px;
+}
+
 .mat-dialog-container {
   max-height: 80vh !important;
+
 }

@@ -53,7 +53,8 @@ export class DataSourceComponent implements OnInit {
     const dialogRef = this.dialog.open(DataSourceDetailComponent, {
       data: {
         dataSource: dataSource
-      }
+      },
+      panelClass: 'large-mat-dialog'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {

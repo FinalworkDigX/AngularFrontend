@@ -30,7 +30,6 @@ export class UserComponent implements OnInit {
     this.userService.getAll()
       .subscribe((users) => {
         this.users = users;
-        console.log(this.users);
       });
   }
 
@@ -61,7 +60,8 @@ export class UserComponent implements OnInit {
 
   private callDialog(user: User) {
     const dialogRef = this.dialog.open(UserDetailComponent, {
-      data: { user: user }
+      data: { user: user },
+      panelClass: 'medium-mat-dialog'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {

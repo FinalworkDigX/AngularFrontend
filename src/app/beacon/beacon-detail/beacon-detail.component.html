@@ -4,12 +4,6 @@
   <ng-template #createTitle><h3>New Beacon:</h3></ng-template>
   <ng-template #updateTitle><h3>Edit:</h3></ng-template>
 
-  <!--ToDo list of rooms / search w/ auto-complete? -->
-  <!--<div class="beacon-roomId">-->
-    <!--<mat-form-field>-->
-      <!--<input matInput [(ngModel)]="beacon.roomId" placeholder="Room id"/>-->
-    <!--</mat-form-field>-->
-  <!--</div>-->
   <form (ngSubmit)="onSubmitClick()" #beaconForm="ngForm">
     <div class="beacon-roomId2">
       <mat-input-container>
@@ -45,7 +39,7 @@
       </mat-input-container>
     </div>
 
-    <div class="alert alert-warning">
+    <div class="alert alert-warning tmp-warn">
       Until the trilateration algorithm is fixed, issues may occur on multiple dataItems per room per beacon,
       Rooms should be seen as Beacon extensions without any other purpose.
     </div>

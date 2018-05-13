@@ -7,23 +7,21 @@
   </div>
 </div>
 <div *ngIf="users" class="col-12-md item-list">
-  {{ users.length }}
   <div *ngFor="let user of users; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="user-id"><span class="key">Id:</span> {{ user.user_id }}</div>
       <div class="user-email"><span class="key">Email:</span> {{ user.email }}</div>
-      <div class="user-email_verified"><span class="key">Email verified:</span> {{ user.email_verified }}</div>
-      <div class="user-name"><span class="key">Name:</span> {{ user.name}}</div>
-      <div class="user-nickname"><span class="key">Nickname:</span> {{ user.nickname}}</div>
-      <div class="user-created"><span class="key">Created:</span> {{ user.created_at }}</div>
-      <div class="user-updated"><span class="key">Updated:</span> {{ user.updated_at }}</div>
-      <div class="user-user_meta item-list-item"><span class="key">User meta:</span>
-        <div class="user-user_meta-channel"><span class="key">Channel:</span> {{ user.user_metadata.channel }}</div>
-        <div class="user-user_meta-type"><span class="key">Type:</span> {{ user.user_metadata.type }}</div>
+      <div class="user-user_meta"><span class="key">User meta:</span>
+        <div class="sub-group">
+          <div class="user-user_meta-channel"><span class="key">Channel:</span> {{ user.user_metadata.channel }}</div>
+          <div class="user-user_meta-type"><span class="key">Type:</span> {{ user.user_metadata.type }}</div>
+        </div>
       </div>
-      <div class="user-last_ip"><span class="key">Last ip:</span> {{ user.last_ip }}</div>
-      <div class="user-last_login"><span class="key">Last login:</span> {{ user.last_login }}</div>
-      <div class="user-logins_count"><span class="key">Logins count:</span> {{ user.logins_count }}</div>
+      <div *ngIf="user.last_ip">
+        <div class="user-last_ip"><span class="key">Last ip:</span> {{ user.last_ip }}</div>
+        <div class="user-last_login"><span class="key">Last login:</span> {{ user.last_login | date: "d/M/y - H:mm:ss" }}</div>
+        <div class="user-logins_count"><span class="key">Login count:</span> {{ user.logins_count }}</div>
+      </div>
     </div>
     <div class="col-md-2">
       <button mat-icon-button aria-label="reset-password" class="reset-password-button" (click)="onResetPassword(user)">

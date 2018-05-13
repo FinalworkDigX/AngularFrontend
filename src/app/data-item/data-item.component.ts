@@ -49,12 +49,17 @@ export class DataItemComponent implements OnInit {
     this.dataItems.splice(arrayIndex, 1);
   }
 
+  filterRoomArray(id: string): Room {
+    return this.rooms.find(obj => obj.id === id);
+  }
+
   private callDialog(dataItem: DataItem) {
     const dialogRef = this.dialog.open(DataItemDetailComponent, {
       data: {
         dataItem: dataItem,
         rooms: this.rooms
-      }
+      },
+      panelClass: 'medium-mat-dialog'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {

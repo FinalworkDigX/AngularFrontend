@@ -25,8 +25,17 @@
   color: #F75421;
   font-weight: bold;
 }
+
 .content {
   padding: 0;
+  margin-left: -0.3px;
+
+}
+
+.sub-group {
+  padding: 0 1em;
+  border-left: 5px solid orange;
+  margin: 0 0 1em 0;
 }
 
 .component-title {
@@ -39,4 +48,25 @@
   h2 {
     padding-top: .2em;
   }
+}
+
+.item-list{
+  &-item {
+    margin: 0;
+    padding: 1em;
+
+    &:nth-child(odd) {
+      background-color: #eee;
+    }
+  }
+}
+
+.alert.alert-warning.tmp-warn {
+  font-size: .7em;
+  max-width: 365px;
+  margin: 2em auto;
+}
+
+.mat-dialog-container {
+  background-color: pink;
 }

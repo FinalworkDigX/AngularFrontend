@@ -46,7 +46,8 @@ export class RoomComponent implements OnInit {
   private callDialog(room: Room) {
     const dialogRef = this.dialog.open(RoomDetailComponent, {
       // width: '30%',
-      data: { room: room }
+      data: { room: room },
+      panelClass: 'medium-mat-dialog'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {

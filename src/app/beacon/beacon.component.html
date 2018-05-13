@@ -6,12 +6,11 @@
     <button mat-raised-button color="primary" (click)="onCreate()">Add new beacon</button>
   </div>
 </div>
-<div *ngIf="beacons" class="col-12-md item-list">
-  {{ beacons.length }}
+<div *ngIf="beacons && rooms" class="col-12-md item-list">
   <div *ngFor="let beacon of beacons; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="beacon-id"><span class="key">Id:</span> {{ beacon.id }}</div>
-      <div class="beacon-roomId"><span class="key">Room Id:</span> {{ beacon.roomId }}</div>
+      <div class="beacon-room"><span class="key">Room:</span> {{ filterRoomArray(beacon.roomId).name }}</div>
       <div class="beacon-name"><span class="key">Name:</span> {{ beacon.name }}</div>
       <div class="beacon-description"><span class="key">Description:</span> {{ beacon.description }}</div>
       <div class="beacon-major"><span class="key">Major:</span> {{ beacon.major }}</div>
