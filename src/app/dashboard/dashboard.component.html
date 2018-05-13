@@ -11,13 +11,14 @@
             [labels]="lineChartLabels"
             [options]="lineChartOptions"
             [legend]="lineChartLegend"
+            [colors]="lineChartColors"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
     <hr/>
   </div>
   <div class="col-md-12 stats">
     <h3>Stats</h3>
-    <div>
+    <div class="sub-group">
       Pending requests: {{ pendingRequestsCount }}
     </div>
   </div>

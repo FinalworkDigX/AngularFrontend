@@ -74,15 +74,15 @@ export class DashboardComponent implements OnInit {
         }]
       }
     };
-    // this.lineChartColors = [
-    //   { // grey
-    //     backgroundColor: 'rgba(148,159,177,0.2)',
-    //     borderColor: 'rgba(148,159,177,1)',
-    //     pointBackgroundColor: 'rgba(148,159,177,1)',
-    //     pointBorderColor: '#fff',
-    //     pointHoverBackgroundColor: '#fff',
-    //     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    //   },
+    this.lineChartColors = [
+      { // grey
+        backgroundColor: 'rgba(82,179,217,0.2)',
+        borderColor: 'rgba(82,179,217,1)',
+        pointBackgroundColor: 'rgba(82,179,217,1)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(82,179,217,0.8)'
+      },
     //   { // dark grey
     //     backgroundColor: 'rgba(77,83,96,0.2)',
     //     borderColor: 'rgba(77,83,96,1)',
@@ -99,14 +99,11 @@ export class DashboardComponent implements OnInit {
     //     pointHoverBackgroundColor: '#fff',
     //     pointHoverBorderColor: 'rgba(148,159,177,0.8)'
     //   }
-    // ];
+    ];
     const date = new Date();
     for (let i = 14; i >= 0; i--) {
       const tmpDate = new Date(date);
-      console.log(i);
-      console.log(tmpDate);
       tmpDate.setSeconds(tmpDate.getSeconds() - i);
-      console.log(tmpDate);
       this.chartUpdateData(tmpDate);
     }
     this.chartUpdate();
