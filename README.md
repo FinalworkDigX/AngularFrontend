@@ -17,20 +17,30 @@ Other applications in the RAM Application suite:
 
 ## Development server
 ### Common setup
-enviroenment file
-if same serrver only slug to api
-else whole url
+Copy example.environment.prod.ts to environment.prod.ts
+```bash
+cp example.environment.prod.ts environment.prod.ts
+```
+this will be edited in the next step.
+* If the backend will run on another server follow [these instructions](1-backend-and-angular-on-same-server)<br/>
+* If both applications will run on the same server follow [those instructions](2-backend-and-angular-on-different-server)
 
-### Backend and Angular on SAME server
+***********************************************************************************************************************
+
+### 1. Backend and Angular on SAME server
 This can be useful to only use slugs instead of full URLs in the code. <br/>
 For this to work we need to tell Angular to proxy our requests.
 
-##### Copy and edit the example.proxy.conf.json 
+#### Edit 'environment.prod.ts'
+
+For 'apiUrl' fill in the slug to the deployed URL from the same server (example in file)
+
+#### Copy and edit the 'example.proxy.conf.json'
 
 ```bash
 cp example.proxy.conf.json proxy.conf.json
 ```
-##### Needed information <br/>
+#### Needed information <br/>
 This is an example of how the `proxy.conf.json` file should look.
 ```bash
   "/api/*": {
@@ -41,7 +51,7 @@ This is an example of how the `proxy.conf.json` file should look.
   }
 ```
 
-##### To start the development server:
+#### To start the development server:
 ```bash
 npm start
 ``` 
@@ -49,7 +59,12 @@ npm start
 Navigate to `http://localhost:4200/` to inspect the application.<br/> 
 The app will automatically reload if you change any of the source files.
 
-### Backend and Angular on DIFFERENT server
+### 2. Backend and Angular on DIFFERENT server
+#### Edit 'environment.prod.ts'
+
+For 'apiUrl' fill in the complete URL to the deployed server (example in file)
+
+#### Run server
 For a development server run:
 ```bash
 ng serve
