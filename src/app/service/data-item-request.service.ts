@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { DataItem } from '../model/data-item';
 import { SessionService } from './session.service';
 import { HttpClient } from '@angular/common/http';
 import { DataItemRequest } from '../model/data-item-request';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class DataItemRequestService {
 
-  private baseUrl = '/api/v1/request';
+  private baseUrl = environment.apiUrl + '/v1/request';
 
   constructor(
     private http: HttpClient,

@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from './session.service';
 import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
 import { User } from '../model/user';
 import { UserDto } from '../dto/userDto';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class UserService {
 
-  private baseUrl =  '/api/v1/management/user';
+  private baseUrl = environment.apiUrl + '/v1/management/user';
 
   constructor(
     private http: HttpClient,

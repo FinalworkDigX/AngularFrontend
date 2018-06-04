@@ -3,15 +3,16 @@ import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { Subscription } from 'rxjs/Subscription';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
+import { environment } from '../../environments/environment.prod';
 
 
 @Injectable()
 export class SocketService {
-  private serverUrl = 'https://fw.ludovicmarchand.be/api/managerWS';
+  private baseUrl = environment.apiUrl + '/managerWS';
   private stompClient;
 
-  private datalog_ = new ReplaySubject<any>(300);
-  dataLog = this.datalog_.asObservable();
+  private dataLog_ = new ReplaySubject<any>(300);
+  dataLog = this.dataLog_.asObservable();
 
   private subscriptions = new Subscription();
 
@@ -20,7 +21,7 @@ export class SocketService {
   }
 
   private connect() {
-    const ws = new SockJS(this.serverUrl);
+    const ws = new SockJS(this.baseUrl);
     this.stompClient = Stomp.over(ws);
     const thisObj = this;
 
@@ -33,7 +34,7 @@ export class SocketService {
   private initDataLogMonitoring() {
     this.subscriptions.add(this.stompClient.subscribe('/topic/dataLog', (dataLog) => {
       if (dataLog.body) {
-        this.datalog_.next(dataLog.body);
+        this.dataLog_.next(dataLog.body);
       }
     }));
   }

@@ -1,17 +1,17 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Token } from '../model/token';
 import { Login } from '../model/login';
 import { Observable } from 'rxjs/Observable';
 import { SessionService } from './session.service';
-import { isEmpty } from 'rxjs/operators';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class AuthenticationService {
   @Output() loginState: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  private baseUrl = '/api/v1/auth';
+  private baseUrl = environment.apiUrl + '/v1/auth';
   private token_: Token;
 
   // Getter to only return private token (a la .net)

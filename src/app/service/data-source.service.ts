@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { SessionService } from './session.service';
 import { Observable } from 'rxjs/Observable';
 import { DataSource } from '../model/data-source';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class DataSourceService {
 
-  private baseUrl =  '/api/v1/dataSource';
+  private baseUrl = environment.apiUrl + '/v1/dataSource';
 
   constructor(
     private http: HttpClient,
