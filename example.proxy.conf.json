@@ -1,6 +1,6 @@
 {
   "/api/*": {
-    "target": "https://fw.ludovicmarchand.be",
+    "target": "https://myApi.com",
     "secure": false,
     "logLevel": "debug",
     "changeOrigin": true
