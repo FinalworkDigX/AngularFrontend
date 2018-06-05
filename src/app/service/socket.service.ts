@@ -19,6 +19,10 @@ export class SocketService {
   serverInfo = this.serverInfo_.asObservable();
   lastServerInfo: ServerInformation;
 
+  private requestNotification_ = new ReplaySubject<number>(300);
+  requestNotification = this.requestNotification_.asObservable();
+  lastRequestNotificationCount: number;
+
   private subscriptions = new Subscription();
 
   constructor() {
@@ -34,6 +38,7 @@ export class SocketService {
       console.log(frame);
       thisObj.initDataLogMonitoring();
       thisObj.initServerInfoMonitoring();
+      thisObj.initRequestCountMonitoring();
     });
   }
 
@@ -51,6 +56,15 @@ export class SocketService {
         const newServerInfo: ServerInformation = JSON.parse(serverInfo.body);
         this.serverInfo_.next(newServerInfo);
         this.lastServerInfo = newServerInfo;
+      }
+    }));
+  }
+
+  private initRequestCountMonitoring() {
+    this.subscriptions.add(this.stompClient.subscribe('/topic/notification/request', (requestCount) => {
+      if (requestCount.body) {
+        this.requestNotification_.next(requestCount.body);
+        this.lastRequestNotificationCount = requestCount.body;
       }
     }));
   }
