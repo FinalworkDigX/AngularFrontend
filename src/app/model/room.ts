@@ -1,6 +1,6 @@
 export class Room {
-  id: String;
-  name: String;
-  description: String;
-  location: String;
+  id: string;
+  name: string;
+  description: string;
+  location: string;
 }

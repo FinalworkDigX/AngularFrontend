@@ -1,5 +1,92 @@
-<h3>Dashboard</h3>
-
-<div *ngIf="login">
-  <p>{{ login.email }}</p>
+<div class="col-md-12 component-title">
+  <div class="col-md-6">
+    <h2>Dashboard</h2>
+  </div>
 </div>
+<div class="col-md-12">
+  <div class="col-md-12 dataLogChart">
+    <canvas baseChart
+            [chartType]="lineChartType"
+            [legend]="lineChartLegend"
+            [datasets]="staticLineChartData"
+            [labels]="staticLineChartLabels"
+            [options]="staticLineChartOptions"
+            [colors]="staticLineChartColors"></canvas>
+    <hr/>
+  </div>
+  <div class="row stats">
+    <h3 class="col-md-12">Stats</h3>
+    <div class="stats {{ serverInfoPending? 'pending-data':''}}">
+      <div class="stat-card">
+        <mat-card >
+          <mat-card-title>Server CPU<hr/></mat-card-title>
+
+          <mat-card-content>
+            <div class="usageChart">
+              <canvas baseChart
+                      [data]="cpuChartData"
+                      [labels]="usageChartLabel"
+                      [chartType]="usageChartType"
+                      [options]="usageChartOptions"
+                      [colors]="usageChartColors"
+                      style="width: 100%; height: 100%;"></canvas>
+            </div>
+            <div class="usageContent">
+              <div>
+                <strong>Name:</strong> <span *ngIf="!serverInfoPending">{{ currentServerInfo.cpu.name }}</span>
+              </div>
+              <div>
+                <strong>Load:</strong> <span *ngIf="!serverInfoPending">{{ currentServerInfo.cpu.currentClockSpeed }} / {{ currentServerInfo.cpu.maxClockSpeed }}Ghz   <strong>({{ currentServerInfo.cpu.loadPercentage }}%)</strong></span>
+              </div>
+              <div>
+                <strong>Temp:</strong> <span *ngIf="!serverInfoPending">{{ currentServerInfo.cpu.temperature }} &deg;C</span>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="stat-card">
+        <mat-card >
+          <mat-card-title>Server Memory<hr/></mat-card-title>
+
+          <mat-card-content>
+            <div class="usageChart">
+              <canvas baseChart
+                      [data]="memoryChartData"
+                      [labels]="usageChartLabel"
+                      [chartType]="usageChartType"
+                      [options]="usageChartOptions"
+                      [colors]="usageChartColors"
+                      style="width: 100%; height: 100%;"></canvas>
+            </div>
+            <div class="usageContent">
+                <strong>Usage:</strong> <span *ngIf="!serverInfoPending">{{ currentServerInfo.memory.availableMemory }} / {{ currentServerInfo.memory.totalMemory }}</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+
+      <div class="stat-card">
+        <mat-card >
+          <mat-card-title>Other<hr/></mat-card-title>
+
+          <mat-card-content>
+            <div class="usageContent">
+              <div>
+                <strong>Pending requests:</strong> <span *ngIf="pendingRequestsCount">{{ pendingRequestsCount }}</span>
+              </div>
+              <div>
+                <strong>Max dataLogs:</strong> {{ staticMaxDataLogs }} / Sec.
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="node_modules/chart.js/src/chart.js"></script>

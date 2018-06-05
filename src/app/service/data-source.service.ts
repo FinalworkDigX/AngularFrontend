@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SessionService } from './session.service';
-import { Room } from '../model/room';
-import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { DataSource } from '../model/data-source';
-import { DataItem } from '../model/data-item';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class DataSourceService {
 
-  private baseUrl =  '/api/v1/dataSource';
+  private baseUrl = environment.apiUrl + '/v1/dataSource';
 
   constructor(
     private http: HttpClient,
@@ -19,6 +17,14 @@ export class DataSourceService {
 
   getAll(): Observable<DataSource[]> {
     return this.http.get<DataSource[]>(this.baseUrl, this.sessionService.httpOptions);
+  }
+
+  restartClient() {
+    this.http.get(this.baseUrl + '/restartClient', this.sessionService.httpOptions)
+      .subscribe(
+        (res: any) => {},
+        error => console.log(error)
+      );
   }
 
   create(dataSource: DataSource): Observable<DataSource> {

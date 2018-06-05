@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Room } from '../model/room';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { of } from 'rxjs/observable/of';
+import { HttpClient } from '@angular/common/http';
 import { SessionService } from './session.service';
-import { DataSource } from '../model/data-source';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class RoomService {
 
-  private baseUrl =  '/api/v1/room';
+  private baseUrl = environment.apiUrl + '/v1/room';
 
   constructor(
     private http: HttpClient,

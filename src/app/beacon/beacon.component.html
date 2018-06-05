@@ -1,17 +1,16 @@
-<div class="col-md-12">
+<div class="col-md-12 component-title">
   <div class="col-md-6">
-    <h3>Beacons</h3>
+    <h2>Beacons</h2>
   </div>
   <div class="col-md-6">
-    <button (click)="create()">Add new beacon</button>
+    <button mat-raised-button color="primary" (click)="onCreate()">Add new beacon</button>
   </div>
 </div>
-<div *ngIf="beacons" class="col-12-md">
-  {{ beacons.length }}
-  <div *ngFor="let beacon of beacons; let i = index" class="row beacon">
+<div *ngIf="beacons && rooms" class="col-12-md item-list">
+  <div *ngFor="let beacon of beacons; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="beacon-id"><span class="key">Id:</span> {{ beacon.id }}</div>
-      <div class="beacon-roomId"><span class="key">Room Id:</span> {{ beacon.roomId }}</div>
+      <div class="beacon-room"><span class="key">Room:</span> {{ filterRoomArray(beacon.roomId).name }}</div>
       <div class="beacon-name"><span class="key">Name:</span> {{ beacon.name }}</div>
       <div class="beacon-description"><span class="key">Description:</span> {{ beacon.description }}</div>
       <div class="beacon-major"><span class="key">Major:</span> {{ beacon.major }}</div>
@@ -20,8 +19,12 @@
       <div class="beacon-lastUpdated"><span class="key">Last Updated:</span> {{ beacon.lastUpdated }}</div>
     </div>
     <div class="col-md-2">
-      <button (click)="update(beacon)">Edit (custom font icon?)</button>
-      <button (click)="delete(i, beacon)">Delete (custom font icon?)</button>
+      <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(beacon)">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="delete" class="delete-button" (click)="onDelete(i, beacon)">
+        <mat-icon aria-hidden="true">delete_forever</mat-icon>
+      </button>
     </div>
   </div>
 </div>

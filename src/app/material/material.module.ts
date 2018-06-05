@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import {
   ErrorStateMatcher,
   MAT_DIALOG_DEFAULT_OPTIONS,
-  MatButtonModule,
+  MatButtonModule, MatCardModule,
   MatDialogModule,
   MatFormFieldModule, MatIconModule,
   MatInputModule, MatSelectModule, ShowOnDirtyErrorStateMatcher
@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
   ],
   exports: [
     MatDialogModule,
@@ -26,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
+    MatCardModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true} },

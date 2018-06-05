@@ -1,0 +1,32 @@
+@import "~@angular/material/theming";
+
+// Copy the palettes from your selected theme (usually theme.scss).
+$app-primary: mat-palette($mat-cyan);
+$app-accent:  mat-palette($mat-teal);
+$app-warn:    mat-palette($mat-red);
+$app-extra:   mat-palette($mat-indigo);
+
+// Create your Sass color vars (will be available in all the project)
+//$primary: mat-color($app-primary);
+$primary: #52b3d9;
+$accent: mat-color($app-accent);
+//$warn: mat-color($app-warn);
+$warn: crimson;
+$extra: mat-color($app-extra);
+
+
+// Colours
+$primary-color: #333;
+$accent-color-1: #F6A82B;
+
+.mat-fab.mat-accent, .mat-mini-fab.mat-accent, .mat-raised-button.mat-accent {
+  background-color: $accent;
+}
+
+.mat-fab.mat-primary, .mat-mini-fab.mat-primary, .mat-raised-button.mat-primary {
+  background-color: $primary;
+}
+
+.mat-fab.mat-warn, .mat-mini-fab.mat-warn, .mat-raised-button.mat-warn {
+  background-color: crimson;
+}

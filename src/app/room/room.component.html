@@ -1,14 +1,13 @@
-<div class="col-md-12">
+<div class="col-md-12 component-title">
   <div class="col-md-6">
-    <h3>Rooms</h3>
+    <h2>Rooms</h2>
   </div>
   <div class="col-md-6">
-    <button (click)="create()">Add new room</button>
+    <button mat-raised-button color="primary" (click)="onCreate()">Add new room</button>
   </div>
 </div>
-<div *ngIf="rooms" class="col-12-md">
-  {{ rooms.length }}
-    <div *ngFor="let room of rooms; let i = index" class="row room">
+<div *ngIf="rooms" class="col-12-md item-list">
+    <div *ngFor="let room of rooms; let i = index" class="row item-list-item">
       <div class="col-md-10">
         <div class="room-id"><span class="key">Id:</span> {{ room.id }}</div>
         <div class="room-name"><span class="key">Name:</span> {{ room.name }}</div>
@@ -16,8 +15,12 @@
         <div class="room-location"><span class="key">Location:</span> {{ room.location }}</div>
       </div>
       <div class="col-md-2">
-        <button (click)="update(room)">Edit (custom font icon?)</button>
-        <button (click)="delete(i, room)">Delete (custom font icon?)</button>
+        <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(room)">
+          <mat-icon>mode_edit</mat-icon>
+        </button>
+        <button mat-icon-button aria-label="delete" class="delete-button" (click)="onDelete(i, room)">
+          <mat-icon aria-hidden="true">delete_forever</mat-icon>
+        </button>
       </div>
     </div>
 </div>

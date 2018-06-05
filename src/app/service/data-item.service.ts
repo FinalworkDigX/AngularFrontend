@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { DataItem } from '../model/data-item';
 import { Observable } from 'rxjs/Observable';
 import { SessionService } from './session.service';
+import { environment } from '../../environments/environment.prod';
 
 @Injectable()
 export class DataItemService {
 
-  private baseUrl = '/api/v1/dataItem';
+  private baseUrl = environment.apiUrl + '/v1/dataItem';
 
   constructor(
     private http: HttpClient,

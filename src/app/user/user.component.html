@@ -1,34 +1,42 @@
-<div class="col-md-12">
+<div class="col-md-12 component-title">
   <div class="col-md-6">
-    <h3>Users</h3>
+    <h2>Users</h2>
   </div>
   <div class="col-md-6">
-    <button (click)="onCreate()">Create User</button>
+    <button mat-raised-button color="primary" (click)="onCreate()">Create User</button>
   </div>
 </div>
-<div *ngIf="users" class="col-12-md">
-  {{ users.length }}
-  <div *ngFor="let user of users; let i = index" class="row group">
+<div *ngIf="users" class="col-12-md item-list">
+  <div *ngFor="let user of users; let i = index" class="row item-list-item">
     <div class="col-md-10">
       <div class="user-id"><span class="key">Id:</span> {{ user.user_id }}</div>
       <div class="user-email"><span class="key">Email:</span> {{ user.email }}</div>
-      <div class="user-email_verified"><span class="key">Email verified:</span> {{ user.email_verified }}</div>
-      <div class="user-name"><span class="key">Name:</span> {{ user.name}}</div>
-      <div class="user-nickname"><span class="key">Nickname:</span> {{ user.nickname}}</div>
-      <div class="user-created"><span class="key">Created:</span> {{ user.created_at }}</div>
-      <div class="user-updated"><span class="key">Updated:</span> {{ user.updated_at }}</div>
-      <div class="user-user_meta group"><span class="key">User meta:</span>
-        <div class="user-user_meta-channel"><span class="key">Channel:</span> {{ user.user_metadata.channel }}</div>
-        <div class="user-user_meta-type"><span class="key">Type:</span> {{ user.user_metadata.type }}</div>
+      <div class="user-user_meta"><span class="key">User meta:</span>
+        <div class="sub-group">
+          <div class="user-user_meta-channel"><span class="key">Channel:</span> {{ user.user_metadata.channel }}</div>
+          <div class="user-user_meta-type"><span class="key">Type:</span> {{ user.user_metadata.type }}</div>
+        </div>
       </div>
-      <div class="user-last_ip"><span class="key">Last ip:</span> {{ user.last_ip }}</div>
-      <div class="user-last_login"><span class="key">Last login:</span> {{ user.last_login }}</div>
-      <div class="user-logins_count"><span class="key">Logins count:</span> {{ user.logins_count }}</div>
+      <div *ngIf="user.last_ip">
+        <div class="user-last_ip"><span class="key">Last ip:</span> {{ user.last_ip }}</div>
+        <div class="user-last_login"><span class="key">Last login:</span> {{ user.last_login | date: "d/M/y - H:mm:ss" }}</div>
+        <div class="user-logins_count"><span class="key">Login count:</span> {{ user.logins_count }}</div>
+      </div>
     </div>
     <div class="col-md-2">
-      <button (click)="onResetPassword(user)">Reset password (custom font icon?)</button>
-      <button (click)="onUpdate(user)">Edit (custom font icon?)</button>
-      <button (click)="onDelete(i, user)">Delete (custom font icon?)</button>
+      <button mat-icon-button aria-label="reset-password" class="reset-password-button" (click)="onResetPassword(user)">
+        <mat-icon>email</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="edit" class="edit-button" (click)="onUpdate(user)">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="delete" class="delete-button" (click)="onDelete(i, user)">
+        <mat-icon aria-hidden="true">delete_forever</mat-icon>
+      </button>
     </div>
   </div>
+  <!--Debug-->
+</div>
+<div class="debug">
+  <button (click)="onResetConnection()"> </button>
 </div>

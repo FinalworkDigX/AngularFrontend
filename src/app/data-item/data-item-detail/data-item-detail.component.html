@@ -2,30 +2,47 @@
 
   <div *ngIf="isNew;then createTitle else updateTitle"></div>
   <ng-template #createTitle><h3>New Data Item:</h3></ng-template>
-  <ng-template #updateTitle><h3>Edit: {{ dataItem.name | uppercase }}</h3></ng-template>
+  <ng-template #updateTitle><h3>Edit:</h3></ng-template>
 
-  <div class="beacon-roomId2">
-    <mat-form-field>
-      <mat-select placeholder="Room" [(ngModel)]="dataItem.roomId">
-        <mat-option *ngFor="let room of rooms" value="{{ room.id }}">{{ room.name }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+  <form (ngSubmit)="onSubmitClick()" #dataItemForm="ngForm">
 
-  <div class="beacon-name">
-    <mat-form-field>
-      <input matInput [(ngModel)]="dataItem.name" placeholder="name"/>
-    </mat-form-field>
-  </div>
-  <div class="beacon-description">
-    <mat-form-field>
-      <input matInput [(ngModel)]="dataItem.location" placeholder="location"/>
-    </mat-form-field>
-  </div>
-  <button mat-raised-button (click)="onCancelClick()">Cancel</button>
+    <div class="dataItem-roomId2">
+      <mat-input-container>
+        <mat-select matInput placeholder="Room" [(ngModel)]="dataItem.roomId" name="roomId" required>
+          <mat-option *ngFor="let room of rooms" value="{{ room.id }}">{{ room.name }}</mat-option>
+        </mat-select>
+      </mat-input-container>
+    </div>
 
-  <div *ngIf="isNew;then createButton else updateButton"></div>
-  <ng-template #createButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Create</button></ng-template>
-  <ng-template #updateButton><button mat-raised-button color="primary" (click)="onSubmitClick()">Update</button></ng-template>
+    <div class="dataItem-name">
+      <mat-input-container>
+        <input matInput [(ngModel)]="dataItem.name" placeholder="name" name="name" required/>
+      </mat-input-container>
+    </div>
+    <div class="dataItem-itemId">
+      <mat-input-container>
+        <input matInput [(ngModel)]="dataItem.itemId" placeholder="item id" name="itemId" required/>
+      </mat-input-container>
+    </div>
+    <!--<div class="dataItem-location">-->
+      <!--<mat-input-container>-->
+        <!--<input matInput [(ngModel)]="dataItem.location" placeholder="location" name="location" required/>-->
+      <!--</mat-input-container>-->
+    <!--</div>-->
+
+    <div class="alert alert-warning tmp-warn">
+      Until the trilateration algorithm is fixed, issues may occur on multiple dataItems per room per beacon,
+      Rooms should be seen as Beacon extensions without any other purpose.
+    </div>
+
+    <!-- Buttons -->
+    <div class="actionButtons">
+      <button mat-raised-button type="button" (click)="onCancelClick()">Cancel</button>
+
+      <div *ngIf="isNew;then createButton else updateButton" ></div>
+      <ng-template #createButton><button mat-raised-button color="primary" type="submit" [disabled]="!dataItemForm.form.valid">Create</button></ng-template>
+      <ng-template #updateButton><button mat-raised-button color="primary" type="submit" [disabled]="!dataItemForm.form.valid">Update</button></ng-template>
+    </div>
+  </form>
 </div>
 

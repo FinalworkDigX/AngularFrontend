@@ -10,7 +10,7 @@ import { isUndefined } from 'util';
 @Component({
   selector: 'app-data-item',
   templateUrl: './data-item.component.html',
-  styleUrls: ['./data-item.component.css']
+  styleUrls: ['./data-item.component.scss']
 })
 export class DataItemComponent implements OnInit {
 
@@ -36,17 +36,21 @@ export class DataItemComponent implements OnInit {
     this.roomService.getAll().subscribe(rooms => this.rooms = rooms);
   }
 
-  create() {
+  onCreate() {
     this.callDialog(new DataItem());
   }
 
-  update(dataItem: DataItem) {
+  onUpdate(dataItem: DataItem) {
     this.callDialog(dataItem);
   }
 
-  delete(arrayIndex: number, dataItem: DataItem) {
+  onDelete(arrayIndex: number, dataItem: DataItem) {
     this.dataItemService.delete(dataItem);
     this.dataItems.splice(arrayIndex, 1);
+  }
+
+  filterRoomArray(id: string): Room {
+    return this.rooms.find(obj => obj.id === id);
   }
 
   private callDialog(dataItem: DataItem) {
@@ -54,7 +58,8 @@ export class DataItemComponent implements OnInit {
       data: {
         dataItem: dataItem,
         rooms: this.rooms
-      }
+      },
+      panelClass: 'medium-mat-dialog'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {

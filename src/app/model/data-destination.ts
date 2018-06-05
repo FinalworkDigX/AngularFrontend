@@ -1,6 +1,11 @@
-import { BaseConversion } from './base-conversion';
+import { ConversionSchemeEntry } from './conversion-scheme-entry';
 
 export class DataDestination {
   destination: string;
-  conversionScheme: BaseConversion[];
+  conversionScheme: ConversionSchemeEntry[];
+
+  constructor(destination = '', conversionScheme = []) {
+    this.destination = destination;
+    this.conversionScheme = conversionScheme;
+  }
 }

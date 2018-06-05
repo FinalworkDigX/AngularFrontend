@@ -10,7 +10,7 @@ import { Login } from '../model/login';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
 
@@ -26,11 +26,10 @@ export class UserComponent implements OnInit {
     this.getUsers();
   }
 
-  getUsers() {
+  private getUsers() {
     this.userService.getAll()
       .subscribe((users) => {
         this.users = users;
-        console.log(this.users);
       });
   }
 
@@ -55,9 +54,14 @@ export class UserComponent implements OnInit {
     this.authenticationService.resetPassword(login);
   }
 
+  onResetConnection() {
+    this.userService.resetConnection();
+  }
+
   private callDialog(user: User) {
     const dialogRef = this.dialog.open(UserDetailComponent, {
-      data: { user: user }
+      data: { user: user },
+      panelClass: 'medium-mat-dialog'
     });
     dialogRef.afterClosed().subscribe(result => {
       if (!isUndefined(result)) {

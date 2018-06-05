@@ -1,0 +1,29 @@
+<div class="col-md-12 component-title">
+  <div class="col-md-6">
+    <h2>Pending Requests</h2>
+  </div>
+</div>
+<div *ngIf="dataItemRequests" class="col-12-md item-list">
+  <div *ngFor="let request of dataItemRequests; let i = index" class="row item-list-item">
+    <div class="col-md-10">
+      <div class="dataItemRequests-id"><span class="key">Id:</span> {{ request.id }}</div>
+      <div class="dataItemRequests-room"><span class="key">Room:</span> {{ request.room.name }}</div>
+      <div class="dataItemRequests-beacon"><span class="key">Beacon:</span> {{ request.beacon.name }}</div>
+      <div class="sub-group">
+        <div class="dataItemRequests-beacon-major"><span class="key">Major:</span> {{ request.beacon.major }}</div>
+        <div class="dataItemRequests-beacon-minor"><span class="key">Minor:</span> {{ request.beacon.minor }}</div>
+
+      </div>
+      <div class="dataItemRequests-dataItemName"><span class="key">Data Item name:</span> {{ request.dataItemName }}</div>
+      <div class="dataItemRequests-requester"><span class="key">Requester:</span> <a href="mailto:{{ request.requester }}">{{ request.requester }}</a></div>
+    </div>
+    <div class="col-md-2">
+      <button mat-icon-button aria-label="process" class="edit-button" (click)="onProcess(request)">
+        <mat-icon>mode_edit</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="delete" class="delete-button" (click)="onDelete(i, request)">
+        <mat-icon aria-hidden="true">delete_forever</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
