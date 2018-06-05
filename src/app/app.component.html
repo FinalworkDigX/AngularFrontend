@@ -10,7 +10,7 @@
       <a routerLink="/beacons" routerLinkActive="navigation-active">Beacons</a>
       <a routerLink="/dataItems" routerLinkActive="navigation-active">Data Items</a>
       <a routerLink="/dataSources" routerLinkActive="navigation-active">Data Sources</a>
-      <a routerLink="/requests" routerLinkActive="navigation-active">Pending Requests</a>
+      <a routerLink="/requests" routerLinkActive="navigation-active">Pending Requests <span *ngIf="pendingRequests" class="notification {{ pendingRequests < 9? 'single-digit': '' }}">{{ pendingRequests }}</span> </a>
       <a routerLink="/users" routerLinkActive="navigation-active">Users</a>
       <div class="bottom-wrapper">
         <div class="bottom">

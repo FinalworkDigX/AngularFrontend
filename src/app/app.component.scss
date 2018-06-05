@@ -44,6 +44,17 @@
             max-width: 9em;
           }
         }
+
+        .notification {
+          background: $accent-color-1;
+          padding: .5em;
+          border-radius: 1.2em;
+          color: black;
+
+          &.single-digit {
+            padding: .5em .8em;
+          }
+        }
       }
 
       .bottom-wrapper {
